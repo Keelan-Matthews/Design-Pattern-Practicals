@@ -7,9 +7,7 @@ class ClassA {
     ClassA(){
         std::cout << "ClassA's Empty Constructor is Called" << std::endl;
     }
-    virtual ~ClassA(){
-        std::cout << "ClassA's Destructor is Called" << std::endl;
-    }
+    virtual ~ClassA()=0;
 };
 
 class ClassB {
