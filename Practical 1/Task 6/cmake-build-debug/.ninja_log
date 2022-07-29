@@ -1,0 +1,11 @@
+# ninja log v5
+15	1029	6808155893360000	build.ninja	7e089c567404ebe8
+18	963	6808155893360000	build.ninja	7e089c567404ebe8
+7	627	6808155903230000	CMakeFiles/Task_6.dir/AuditableSnapshot.cpp.obj	4bf6dd1dc46d03a2
+13	732	6808155903990000	CMakeFiles/Task_6.dir/Snapshot.cpp.obj	5f2a41a42021c74e
+22	782	6808155904970000	CMakeFiles/Task_6.dir/User.cpp.obj	c9bc188d97032268
+10	889	6808155906120000	CMakeFiles/Task_6.dir/main.cpp.obj	6cf53790a73b9bf
+13	733	6808157254910000	CMakeFiles/Task_6.dir/User.cpp.obj	c9bc188d97032268
+8	818	6808157255830000	CMakeFiles/Task_6.dir/main.cpp.obj	6cf53790a73b9bf
+18	881	6808157256490000	CMakeFiles/Task_6.dir/UserManager.cpp.obj	ff123b7cbaa2f57d
+885	1324	6808157260670000	Task_6.exe	6473c9079a2a6510

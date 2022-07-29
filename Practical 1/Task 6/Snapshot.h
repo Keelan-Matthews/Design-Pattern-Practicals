@@ -9,7 +9,7 @@ private:
 
 public:
     Snapshot(std::string state);
-    std::string state();
-    std::string date();
-    std::string GetUsername();
+    std::string state() const;
+    std::string date() const;
+    std::string GetUsername() const;
 };

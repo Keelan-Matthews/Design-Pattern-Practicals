@@ -5,14 +5,14 @@ Snapshot::Snapshot(std::string state) : _state(state) {
     this->_date = std::ctime(&curr);
 }
 
-std::string Snapshot::state() {
+std::string Snapshot::state() const {
     return _state;
 }
 
-std::string Snapshot::date() {
+std::string Snapshot::date() const {
     return _date;
 }
 
-std::string Snapshot::GetUsername() {
+std::string Snapshot::GetUsername() const {
     return date();
 }

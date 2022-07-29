@@ -11,6 +11,6 @@ private:
 public:
     User(std::string username, std::string password);
     void SetPassword(std::string password);
-    Snapshot *Save();
+    Snapshot * Save();
     void Restore(Snapshot *memento);
 };
