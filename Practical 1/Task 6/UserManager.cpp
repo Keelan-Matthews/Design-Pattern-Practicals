@@ -1,21 +1,22 @@
-class UserManager {
+#include "UserManager.h"
 
- public:
-  UserManager(User *User) : User_(User) {;
-    // TODO : Implement
-  }
+UserManager::UserManager(User *User) : User_(User) {}
 
-  void Backup() {
+void UserManager::Backup() {
     std::cout << "\nUserManager: Saving User's state...\n";
-    // TODO : Implement
-  }
+    this->mementos_.push_back(this->User_->Save());
+}
 
-  void Undo() {
-    // TODO : Implement
-  }
+void UserManager::Undo() {
+    if (this->mementos_.empty()) return;
 
-  void ShowHistory() const {
+    Snapshot *snapshot = this->mementos_.back();
+    this->mementos_.pop_back();
+    this->User_->Restore(snapshot);
+}
+
+void UserManager::ShowHistory() {
     std::cout << "UserManager: Here's the list of historal changes:\n";
-    // TODO : Implement
-  }
-};
+    for (Snapshot *snapshot : this->mementos_)
+        std::cout << snapshot->GetUsername() << " " << snapshot->date() << std::endl;
+}
