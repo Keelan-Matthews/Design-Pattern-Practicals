@@ -14,5 +14,5 @@ std::string Snapshot::date() {
 }
 
 std::string Snapshot::GetUsername() {
-    return std::string();
+    return date();
 }

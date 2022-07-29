@@ -18,5 +18,5 @@ void UserManager::Undo() {
 void UserManager::ShowHistory() {
     std::cout << "UserManager: Here's the list of historal changes:\n";
     for (Snapshot *snapshot : this->mementos_)
-        std::cout << snapshot->GetUsername() << " " << snapshot->date() << std::endl;
+        std::cout << snapshot->state() << " " << snapshot->GetUsername() << std::endl;
 }

@@ -26,7 +26,7 @@ void User::SetPassword(std::string password) {
 }
 
 Snapshot *User::Save() {
-    return new Snapshot(this->_username,this->_password);
+    return new Snapshot(this->_password);
 }
 
 void User::Restore(Snapshot *memento) {
