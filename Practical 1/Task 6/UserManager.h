@@ -6,7 +6,7 @@
 class UserManager {
 private:
     User *User_;
-    std::vector<Snapshot *> mementos_;
+    std::vector<AuditableSnapshot *> mementos_;
 
 public:
     UserManager(User *User);

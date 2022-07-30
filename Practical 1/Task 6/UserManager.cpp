@@ -10,13 +10,13 @@ void UserManager::Backup() {
 void UserManager::Undo() {
     if (this->mementos_.empty()) return;
 
-    Snapshot *snapshot = this->mementos_.back();
+    AuditableSnapshot *snapshot = this->mementos_.back();
     this->mementos_.pop_back();
     this->User_->Restore(snapshot);
 }
 
 void UserManager::ShowHistory() {
     std::cout << "UserManager: Here's the list of historal changes:\n";
-    for (Snapshot *snapshot : this->mementos_)
+    for (AuditableSnapshot *snapshot : this->mementos_)
         std::cout << snapshot->state() << " " << snapshot->GetUsername() << std::endl;
 }

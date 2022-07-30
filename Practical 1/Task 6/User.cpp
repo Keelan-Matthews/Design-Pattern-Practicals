@@ -25,11 +25,11 @@ void User::SetPassword(std::string password) {
     std::cout << "User: My password has been changed to: " << this->_password << "\n";
 }
 
-Snapshot *User::Save() {
+AuditableSnapshot *User::Save() {
     return new Snapshot(this->_password);
 }
 
-void User::Restore(Snapshot *memento) {
+void User::Restore(AuditableSnapshot *memento) {
     this->_password = memento->state();
     std::cout << "User: My password has changed to: " << this->_password << "\n";
 }
