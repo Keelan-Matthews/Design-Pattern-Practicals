@@ -11,7 +11,7 @@ void Snake::celebrate() {
 
 bool Snake::getHit(SquadMember *z) {
     std::cout << "Slithers rapidly searching for safety and employs y" << std::endl;
-    if (z->isAlive()) {
+    if (z->getHP() > 0) {
         this->setHP(this->getHP() - z->getDamage());
         return this->getHP() <= 0;
     }

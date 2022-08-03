@@ -1,13 +1,14 @@
 #pragma once
 #include <iostream>
+#include "SquadMember.h"
 class Enemy {
 private:
     int hp;
-    int atk;
-    int def;
+    std::string atk;
+    std::string def;
     int dmg;
 public:
-    Enemy();
+    Enemy(int hp, std::string atk, std::string def, int dmg);
     ~Enemy();
     void attack(SquadMember* z);
     int getHP();
