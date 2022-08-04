@@ -17,6 +17,7 @@ public:
     std::string getATK();
     std::string getDEF();
     int getDMG() const;
+    std::string getName() const;
     virtual bool hitSquadMember(SquadMember* z) = 0;
     virtual void celebrate() = 0;
     virtual bool getHit(SquadMember* z) = 0;

@@ -1,14 +1,17 @@
 #include <iostream>
-#include "SquadMember.h"
 #include "EnemyFactory.h"
 #include "Soldier.h"
+#include "SnakeFactory.h"
+#include "JaguarFactory.h"
+#include "GorillaFactory.h"
+#include "CannibalFactory.h"
 #include <chrono>
 #include <thread>
 #include <vector>
 int main() {
-    std::cout << "------------------------------------------------------------------------" << std::endl;
-    std::cout << "-----------------------WELCOME TO ADVENTURE ISLAND----------------------" << std::endl;
-    std::cout << "------------------------------------------------------------------------" << std::endl << std::endl;
+    std::cout << "----------------------------------------------------------------------------" << std::endl;
+    std::cout << "-------------------------WELCOME TO ADVENTURE ISLAND------------------------" << std::endl;
+    std::cout << "----------------------------------------------------------------------------" << std::endl << std::endl;
     std::cout << "Please enter your name:" << std::endl;
 
     std::string name;
@@ -36,18 +39,37 @@ int main() {
     }
 
     //Initialize enemies - Factory method
-    std::cout << "Please enter the number of enemies you wish to fight:" << std::endl;
-    int enemyCount;
-    std::cin >> enemyCount;
     std::cout << "Generating enemies..." << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-    std::vector<Enemy> enemies;
-    for (int i = 0; i < enemyCount; i++){
-        EnemyFactory *snakeFactory = new SnakeFactory();
-        Enemy enemy = factory->createEnemy("Military Rifle","Flashbang");
+    std::vector<Enemy*> enemies;
+    EnemyFactory *snakeFactory = new SnakeFactory();
+    EnemyFactory *jaguarFactory = new JaguarFactory();
+    EnemyFactory *gorillaFactory = new GorillaFactory();
+    EnemyFactory *cannibalFactory = new CannibalFactory();
+    for (int i = 0; i < teamCount; i++){
+        Enemy *enemy = nullptr;
+        srand ( time(nullptr) );
+        switch (rand() % 4) {
+            case 0:
+                enemy = snakeFactory->createEnemy("Bite","Curl");
+                break;
+            case 1:
+                enemy = jaguarFactory->createEnemy("Claw","Hiss");
+                break;
+            case 2:
+                enemy = gorillaFactory->createEnemy("Fists","Jump away");
+                break;
+            case 3:
+                enemy = cannibalFactory->createEnemy("Maul","Run away");
+                break;
+        }
         enemies.push_back(enemy);
     }
 
+    std::cout << "Enemies generated! They are as follows:" << std::endl;
+    for (auto & enemy : enemies){
+        std::cout << enemy->getName() << ":        HP: " << enemy->getHP() << std::endl;
+    }
 
     return 0;
 }

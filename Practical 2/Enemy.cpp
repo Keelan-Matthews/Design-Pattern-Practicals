@@ -41,3 +41,7 @@ int Enemy::getDMG() const {
 void Enemy::setHP(int hp) {
     this->hp = hp;
 }
+
+std::string Enemy::getName() const {
+    return this->name;
+}

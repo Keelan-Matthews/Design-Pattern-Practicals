@@ -3,8 +3,8 @@
 #include <ctime>
 class EnemyFactory {
 public:
-    EnemyFactory(){};
-    virtual ~EnemyFactory(){};
+    EnemyFactory()= default;
+    virtual ~EnemyFactory()= default;
     virtual Enemy* createEnemy(std::string atk, std::string def) = 0;
 protected:
     std::string getName() {
