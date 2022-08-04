@@ -41,19 +41,3 @@ int Enemy::getDMG() const {
 void Enemy::setHP(int hp) {
     this->hp = hp;
 }
-
-void Enemy::setATK(std::string atk) {
-    this->atk = atk;
-}
-
-void Enemy::setDEF(std::string def) {
-    this->def = def;
-}
-
-void Enemy::setDMG(int dmg) {
-    this->dmg = dmg;
-}
-
-void Enemy::setName(std::string name) {
-    this->name = name;
-}

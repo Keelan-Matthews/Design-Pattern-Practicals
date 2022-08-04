@@ -15,12 +15,8 @@ public:
     int getHP() const;
     void setHP(int hp);
     std::string getATK();
-    void setATK(std::string atk);
     std::string getDEF();
-    void setDEF(std::string def);
     int getDMG() const;
-    void setDMG(int dmg);
-    void setName(std::string name);
     virtual bool hitSquadMember(SquadMember* z) = 0;
     virtual void celebrate() = 0;
     virtual bool getHit(SquadMember* z) = 0;
