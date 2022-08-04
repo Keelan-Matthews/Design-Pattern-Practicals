@@ -3,6 +3,8 @@
 class SquadMember {
 public:
     SquadMember();
+    virtual SquadMember *clone() = 0;
+    virtual ~SquadMember();
     int takeDamage(int dmg);
     int getDamage() const;
     int getHP() const;
@@ -10,10 +12,4 @@ public:
     std::string getDEF() const;
     std::string getName() const;
     void die();
-private:
-    int hp;
-    int dmg;
-    std::string atk;
-    std::string def;
-    std::string name;
 };

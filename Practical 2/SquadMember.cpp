@@ -32,3 +32,5 @@ std::string SquadMember::getATK() const {
 std::string SquadMember::getDEF() const {
     return def;
 }
+
+SquadMember::~SquadMember() = default;
