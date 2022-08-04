@@ -1,8 +1,8 @@
 #include "Snake.h"
 
 bool Snake::hitSquadMember(SquadMember *z) {
-    std::cout << "Snake wraps around x and uses y" << std::endl;
-    return z->takeDamage() <=0;
+    std::cout << "Snake wraps around " << z->getName() << " and uses " << z->getATK() << std::endl;
+    return z->takeDamage(this->getDMG()) <=0;
 }
 
 void Snake::celebrate() {
@@ -10,11 +10,11 @@ void Snake::celebrate() {
 }
 
 bool Snake::getHit(SquadMember *z) {
-    std::cout << "Slithers rapidly searching for safety and employs y" << std::endl;
-    if (z->getHP() > 0) {
+    std::cout << "Slithers rapidly searching for safety and employs " << z->getDEF() << std::endl;
+    if (z->getHP() > 0)
         this->setHP(this->getHP() - z->getDamage());
-        return this->getHP() <= 0;
-    }
+
+    return this->getHP() <= 0;
 }
 
 void Snake::die() {

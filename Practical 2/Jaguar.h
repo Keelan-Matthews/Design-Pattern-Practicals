@@ -2,8 +2,8 @@
 #include "Enemy.h"
 class Jaguar : public Enemy {
 public:
-    bool hitSquadMember(SquadMember* z);
-    void celebrate();
-    bool getHit(SquadMember* z);
-    void die();
+    bool hitSquadMember(SquadMember* z) override;
+    void celebrate() override;
+    bool getHit(SquadMember* z) override;
+    void die() override;
 };

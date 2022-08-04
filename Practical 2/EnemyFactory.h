@@ -1,6 +1,6 @@
 #pragma once
 #include "Enemy.h"
-#include <time.h>
+#include <ctime>
 class EnemyFactory {
 public:
     EnemyFactory(){};
@@ -8,8 +8,8 @@ public:
     virtual Enemy* createEnemy(std::string type) = 0;
 protected:
     std::string getName() {
-        std::string names[] = {"Tyson","Greg","Thomas","Kyle","Matt","Justin","Kaydyn","Tristan","Caylee","Ross","Francois","Tayla"};
-        srand ( time(NULL) );
-        return names[rand() % 12];
+        std::string names[] = {"Jaguar","Snake","Cannibal","Gorilla"};
+        srand ( time(nullptr) );
+        return names[rand() % 4];
     }
 };

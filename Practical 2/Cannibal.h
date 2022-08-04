@@ -1,6 +1,6 @@
 #pragma once
 #include "Enemy.h"
-class Snake : public Enemy {
+class Cannibal : public Enemy {
 public:
     bool hitSquadMember(SquadMember* z) override;
     void celebrate() override;
