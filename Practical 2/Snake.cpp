@@ -1,7 +1,7 @@
 #include "Snake.h"
 
 bool Snake::hitSquadMember(SquadMember *z) {
-    std::cout << "Snake wraps around " << z->getName() << " and uses " << z->getATK() << std::endl;
+    std::cout << "Snake wraps around " << z->getName() << " and uses " << this->getATK() << std::endl;
     return z->takeDamage(this->getDMG()) <=0;
 }
 
@@ -10,7 +10,7 @@ void Snake::celebrate() {
 }
 
 bool Snake::getHit(SquadMember *z) {
-    std::cout << "Slithers rapidly searching for safety and employs " << z->getDEF() << std::endl;
+    std::cout << "Slithers rapidly searching for safety and employs " << this->getDEF() << std::endl;
     if (z->getHP() > 0)
         this->setHP(this->getHP() - z->getDamage());
 

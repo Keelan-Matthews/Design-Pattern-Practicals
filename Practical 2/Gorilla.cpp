@@ -1,7 +1,7 @@
 #include "Gorilla.h"
 
 bool Gorilla::hitSquadMember(SquadMember *z) {
-    std::cout << "Gorilla slams his fists on the ground, growls and hits " << z->getName() << " with " << z->getATK() << std::endl;
+    std::cout << "Gorilla slams his fists on the ground, growls and hits " << z->getName() << " with " << this->getATK() << std::endl;
     return z->takeDamage(this->getDMG()) <=0;
 }
 

@@ -1,7 +1,7 @@
 #include "Jaguar.h"
 
 bool Jaguar::hitSquadMember(SquadMember *z) {
-    std::cout << "Jaguar leaps toward the " << z->getName() << "and deliver's a forceful " << z->getATK() << std::endl;
+    std::cout << "Jaguar leaps toward the " << z->getName() << "and deliver's a forceful " << this->getATK() << std::endl;
     return z->takeDamage(this->getDMG()) <=0;
 }
 
@@ -10,7 +10,7 @@ void Jaguar::celebrate() {
 }
 
 bool Jaguar::getHit(SquadMember *z) {
-    std::cout << "Growls in pain as he is maimed. Jaguar turns around and delivers " << z->getATK() << " against " << z->getName() << std::endl;
+    std::cout << "Growls in pain as he is maimed. Jaguar turns around and delivers " << this->getDEF() << " against " << z->getName() << std::endl;
     if (z->getHP() > 0)
         this->setHP(this->getHP() - z->getDamage());
 
