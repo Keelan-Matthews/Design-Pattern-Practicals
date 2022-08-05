@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 class SquadMember {
 public:
     SquadMember();
@@ -8,8 +9,14 @@ public:
     int takeDamage(int dmg);
     int getDamage() const;
     int getHP() const;
+    std::string getName() const;
     std::string getATK() const;
     std::string getDEF() const;
-    std::string getName() const;
     void die();
+protected:
+    int dmg;
+    std::string atk;
+    std::string def;
+    std::string name;
+    int hp;
 };

@@ -18,9 +18,18 @@ Soldier::Soldier(const Soldier &soldier) {
     this->def = soldier.def;
 
     std::string names[] = {"Dhairiya", "Francois", "Tayla", "Ross", "Thomas", "Tristan", "Justin", "Kaydyn", "Caylee","Matt"};
-    auto filtered = std::remove(std::begin(names), std::end(names), soldier.name);
+
+    //Don't use already chosen name
+    std::string currName = soldier.name.substr(soldier.name.find(" ") + 1);
+
+    int pos = 0;
+    while (names[pos] != currName) pos++;
+
+    for (int i = pos; i < 8; ++i)
+        names[i] = names[i + 1];
+
     srand(time(nullptr));
-    this->name = "Soldier " + filtered[rand() % filtered->size()];
+    this->name = "Soldier " + names[rand() % names->size()];
 }
 
 SquadMember *Soldier::clone() {
