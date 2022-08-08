@@ -6,5 +6,5 @@ Enemy *CannibalFactory::createEnemy(std::string atk, std::string def) {
     std::normal_distribution<double> distribution(30.0, 8.0);
     int hp = distribution(generator);
 
-    return new Cannibal(hp, atk, def, 6, getName());
+    return new Cannibal(hp, atk, def, 6, "Cannibal " + getName());
 }

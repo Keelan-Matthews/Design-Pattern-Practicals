@@ -8,7 +8,7 @@
 #include <chrono>
 #include <thread>
 #include <vector>
-#include <stdlib.h>
+#include <cstdlib>
 int main() {
     std::cout << "------------------------------------------------------------------------------------------------------------------" << std::endl;
     std::cout << "---------------------------------------------WELCOME TO ADVENTURE ISLAND------------------------------------------" << std::endl;
@@ -76,7 +76,6 @@ int main() {
 
     std::cout << "Press any key to begin the game" << std::endl;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cin.get();
     std::cout << "Beginning game..." << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
@@ -84,9 +83,6 @@ int main() {
     int enemycount = teamCount;
 
     while (!squad.empty() && !enemies.empty()) {
-        system("CLS");
-        std::cout << std::flush;
-        system("CLS");
         std::cout << "------------------------------------------------------------------------------------------------------------------" << std::endl;
         std::cout << "---------------------------------------============BATTLE STATUS============--------------------------------------" << std::endl;
         std::cout << "------------------------------------------------------------------------------------------------------------------" << std::endl << std::endl;
@@ -94,12 +90,12 @@ int main() {
         std::cout << "Squad:                                  Enemies:                                       " << std::endl;
         int counter = std::max(teamCount, enemycount);
         for (int i = 0; i < counter; i++) {
-            if (squad[i] != nullptr)
+            if (squad.size() > i)
                 std::cout << i+1 << ". " << squad[i]->getName() << "   " << squad[i]->getHP() << " HP                  ";
             else
                 std::cout << "------Deceased------" << "                                                                 ";
 
-            if (enemies[i] != nullptr)
+            if (enemies.size() > i)
                 std::cout << i+1 << ". " << enemies[i]->getName() << "   " << enemies[i]->getHP() << " HP" << std::endl;
             else
                 std::cout << "------Deceased------" << std::endl;
@@ -131,14 +127,29 @@ int main() {
         enemies[enemyIndex]->attack(squad[index]);
         if (squad[index]->getHP() <= 0) {
             std::cout << squad[index]->getName() << " has been killed!" << std::endl;
+            delete squad[index];
+            squad[index] = nullptr;
             squad.erase(squad.begin() + index);
             teamCount--;
         } else {
             std::cout << enemies[enemyIndex]->getName() << " has been killed!" << std::endl;
+            delete enemies[enemyIndex];
+            enemies[enemyIndex] = nullptr;
             enemies.erase(enemies.begin() + enemyIndex);
             enemycount--;
         }
         std::cout << std::endl << std::endl;
+    }
+
+    delete jaguarFactory;
+    delete snakeFactory;
+    delete gorillaFactory;
+    delete cannibalFactory;
+    for (auto & member : squad) {
+        delete member;
+    }
+    for (auto & enemy : enemies) {
+        delete enemy;
     }
 
     std::cout << "\n------------------------------------------------------------------------------------------------------------------\n" << std::endl;
