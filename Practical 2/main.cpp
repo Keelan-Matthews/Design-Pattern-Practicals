@@ -18,12 +18,12 @@ int main() {
     std::string name;
     std::cin >> name;
 
-    std::cout << name << ", this dice will be used to determine the number of members in your squad. Please roll by pressing any key:" << std::endl;
+    std::cout << name << ", this dice will be used to determine the number of members in your squad. Please roll by pressing enter:" << std::endl;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin.get();
     std::cout << "Rolling dice..." << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-    srand ( time(nullptr) );
+    srand(time(nullptr));
     int teamCount = rand() % 6 + 2;
     std::cout << "Dice rolled! You have " << teamCount << " members in your squad." << std::endl << std::endl;
 
@@ -40,6 +40,9 @@ int main() {
         std::cout << "Squad Member " << i + 1 << ": " << squad[i]->getName() << std::endl;
     }
 
+    std::cout << std::endl << "Press enter to generate enemies" << std::endl;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     //Initialize enemies - Factory method
     std::cout << "---------------------" << std::endl <<std::endl;
     std::cout << "Generating enemies..." << std::endl;
@@ -51,7 +54,6 @@ int main() {
     EnemyFactory *cannibalFactory = new CannibalFactory();
     for (int i = 0; i < teamCount; i++){
         Enemy *enemy = nullptr;
-        srand ( time(nullptr) );
         switch (rand() % 4) {
             case 0:
                 enemy = snakeFactory->createEnemy("Bite","Curl");
@@ -138,7 +140,8 @@ int main() {
             enemies.erase(enemies.begin() + enemyIndex);
             enemycount--;
         }
-        std::cout << std::endl << std::endl;
+        std::cout << std::endl << "Press enter to continue" << std::endl;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
     delete jaguarFactory;
@@ -152,13 +155,13 @@ int main() {
         delete enemy;
     }
 
-    std::cout << "\n------------------------------------------------------------------------------------------------------------------\n" << std::endl;
+    std::cout << "\n" << std::endl;
     if (squad.empty()) {
         std::cout << "You have been defeated!\n" << std::endl;
     } else {
         std::cout << "You have defeated all enemies!\n" << std::endl;
     }
-    std::cout << "------------------------------------------------------------------------------------------------------------------\n" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------" << std::endl;
     std::cout << "------------------------------------------THANK YOU FOR PLAYING---------------------------------------------------" << std::endl;
     std::cout << "------------------------------------------------------------------------------------------------------------------\n" << std::endl;
 

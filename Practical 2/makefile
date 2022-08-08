@@ -38,7 +38,7 @@ GorillaFactory.o: GorillaFactory.cpp
 CannibalFactory.o: CannibalFactory.cpp
 	$(CC) $(FLAGS) CannibalFactory.cpp -std=c++17
 
-enemyFactory.o: EnemyFactory.cpp
+EnemyFactory.o: EnemyFactory.cpp
 	$(CC) $(FLAGS) enemyFactory.cpp -std=c++17
 
 

@@ -6,5 +6,5 @@ Enemy *JaguarFactory::createEnemy(std::string atk, std::string def) {
     std::normal_distribution<double> distribution(10.0, 3.0);
     int hp = distribution(generator);
 
-    return new Jaguar(hp, atk, def, 4, "Jaguar " + getName());
+    return new Jaguar(hp, atk, def, 4, "Jaguar   " + getName());
 }

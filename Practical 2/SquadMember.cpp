@@ -1,8 +1,6 @@
 #include "SquadMember.h"
 
-SquadMember::SquadMember() {
-
-}
+SquadMember::SquadMember()= default;
 
 int SquadMember::takeDamage(int dmg) {
     this->hp -= dmg;
@@ -23,14 +21,6 @@ int SquadMember::getDamage() const {
 
 std::string SquadMember::getName() const {
     return name;
-}
-
-std::string SquadMember::getATK() const {
-    return atk;
-}
-
-std::string SquadMember::getDEF() const {
-    return def;
 }
 
 SquadMember::~SquadMember() = default;

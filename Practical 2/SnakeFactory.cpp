@@ -6,5 +6,5 @@ Enemy *SnakeFactory::createEnemy(std::string atk, std::string def) {
     std::normal_distribution<double> distribution(6.0, 1.0);
     int hp = distribution(generator);
 
-    return new Snake(hp, atk, def, 2, "Snake " + getName());
+    return new Snake(hp, atk, def, 2, "Snake    " + getName());
 }

@@ -10,13 +10,11 @@ public:
     int getDamage() const;
     int getHP() const;
     std::string getName() const;
-    std::string getATK() const;
-    std::string getDEF() const;
     void die();
 protected:
-    int dmg;
+    int dmg{};
     std::string atk;
     std::string def;
     std::string name;
-    int hp;
+    int hp{};
 };
