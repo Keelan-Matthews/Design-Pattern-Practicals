@@ -142,6 +142,7 @@ int main() {
         }
         std::cout << std::endl << "Press enter to continue" << std::endl;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.get();
     }
 
     delete jaguarFactory;
