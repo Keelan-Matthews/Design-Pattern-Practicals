@@ -105,7 +105,7 @@ int main() {
         for (int i = 0; i < teamCount; i++)
             std::cout << "\u001b[38;5;93m❤\u001b[0m ";
         std::cout << "\n";
-        std::cout << "                                                                                         Enemies left ";
+        std::cout << "                                                                                             Enemies left ";
         for (int i = 0; i < enemycount; i++)
             std::cout << "\u001b[38;5;93m❤\u001b[0m ";
         std::cout << "\n\n";

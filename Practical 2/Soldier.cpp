@@ -1,5 +1,6 @@
 #include "Soldier.h"
 #include <vector>
+#include <algorithm>
 
 std::vector<std::string> soldierNames = {"Kirthen", "Taralen", "Labyrin", "Moonbow", "Erevand", "Aerdrie", "Demiwel", "Faenyan", "Crealln","Raphael"};
 
@@ -21,7 +22,7 @@ Soldier::Soldier(const Soldier &soldier) {
     //Don't use already chosen name
     std::string currName = soldier.name.substr(soldier.name.find(' ') + 1);
 
-//    soldierNames.erase(std::find(soldierNames.begin(),soldierNames.end(),currName));
+    soldierNames.erase(std::remove(soldierNames.begin(),soldierNames.end(),currName), soldierNames.end());
 
     this->name = "Soldier " + soldierNames[rand() % soldierNames.size()];
 }
