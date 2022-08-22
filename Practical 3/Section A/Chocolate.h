@@ -6,6 +6,6 @@ private:
     bool slab;
 public:
     Chocolate(string manufacturer, double price, bool slab);
-    ~Chocolate() override;
+//    ~Chocolate() override;
     string getDescription();
 };

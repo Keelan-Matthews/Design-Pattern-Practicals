@@ -4,7 +4,7 @@ Confectionary::Confectionary(string manufacturer, double price, string type) {
     this->manufacturer = manufacturer;
     this->price = price;
     this->type = type;
-    this->id = counter++;
+    this->id = Confectionary::counter++;
 }
 
 string Confectionary::getDescription() {

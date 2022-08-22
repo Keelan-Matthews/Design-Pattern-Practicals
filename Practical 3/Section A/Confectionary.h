@@ -3,7 +3,6 @@
 #include <iostream>
 using namespace std;
 
-
 class Confectionary {
 private:
     string manufacturer;
@@ -13,6 +12,8 @@ private:
     int id;
 public:
     Confectionary(string manufacturer, double price, string type);
-    virtual ~Confectionary() = 0;
+//    virtual ~Confectionary() = 0;
     virtual string getDescription();
 };
+
+int Confectionary::counter = 0;

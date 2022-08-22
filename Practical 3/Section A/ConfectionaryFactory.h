@@ -6,6 +6,6 @@
 
 class ConfectionaryFactory {
 public:
-    virtual Chocolate* createChocolate() = 0;
-    virtual AeratedChocolate* createAeratedChocolate() = 0;
+    virtual Chocolate* createChocolate(bool slab) = 0;
+    virtual AeratedChocolate* createAeratedChocolate(int bubblespccm) = 0;
 };

@@ -6,6 +6,6 @@ private:
     int bubblespccm;
 public:
     AeratedChocolate(string manufacturer, double price, int bubblespccm);
-    ~AeratedChocolate() override;
+//    ~AeratedChocolate() override;
     string getDescription();
 };
