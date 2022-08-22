@@ -5,5 +5,6 @@
 
 class AttackPlayStyle : public PlayStyle {
 public:
+    AttackPlayStyle();
     string attack();
 };

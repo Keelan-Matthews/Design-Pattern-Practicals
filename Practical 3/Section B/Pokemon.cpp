@@ -33,3 +33,23 @@ bool Pokemon::takeDamage(int dmg) {
     this->hp -= dmg;
     return this->hp <= 0;
 }
+
+string Pokemon::getName() {
+    return this->name;
+}
+
+int Pokemon::getHp() {
+    return this->hp;
+}
+
+int Pokemon::getDmg() {
+    return this->dmg;
+}
+
+string Pokemon::getState() {
+    return currentState->getBattleStyle();
+}
+
+string Pokemon::getPlayStyle() {
+    return playStyle->getPlayStyle();
+}

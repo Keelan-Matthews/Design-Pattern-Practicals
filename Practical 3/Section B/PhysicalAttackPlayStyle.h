@@ -5,5 +5,6 @@
 
 class PhysicalAttackPlayStyle : public PlayStyle {
 public:
+    PhysicalAttackPlayStyle();
     string attack();
 };

@@ -3,3 +3,7 @@
 string RunPlayStyle::attack() {
     return "decides life is better than death and leaves the battle";
 }
+
+RunPlayStyle::RunPlayStyle() {
+    this->name = "Run";
+}

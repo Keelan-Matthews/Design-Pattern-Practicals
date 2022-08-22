@@ -17,4 +17,9 @@ public:
     void setPlayStyle(PlayStyle* playStyle);
     bool takeDamage(int dmg);
     void selectBattleState(BattleState* state);
+    string getName();
+    int getHp();
+    int getDmg();
+    string getState();
+    string getPlayStyle();
 };
