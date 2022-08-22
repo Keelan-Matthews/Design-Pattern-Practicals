@@ -7,3 +7,7 @@ AeratedChocolate::AeratedChocolate(string manufacturer, double price, int bubble
 string AeratedChocolate::getDescription() {
     return Confectionary::getDescription() + ". " + to_string(bubblespccm) + " bubbles per cm^3";
 }
+
+AeratedChocolate::~AeratedChocolate() {
+    cout << "AeratedChocolate destructor called" << endl;
+}

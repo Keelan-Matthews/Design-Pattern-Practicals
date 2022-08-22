@@ -7,3 +7,7 @@ Chocolate::Chocolate(string manufacturer, double price, bool slab) : Confectiona
 string Chocolate::getDescription() {
     return Confectionary::getDescription() + " " + (slab ? " - slab" : " - mini bar");
 }
+
+Chocolate::~Chocolate() {
+    std::cout << "Chocolate destructor called" << std::endl;
+}
