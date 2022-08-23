@@ -12,7 +12,7 @@ using namespace std;
 #include <string>
 
 int main() {
-    cout << "                                  ,'\\\n"
+    cout << "\u001b[33m                                  ,'\\\n"
             "    _.----.        ____         ,'  _\\   ___    ___     ____\n"
             "_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.\n"
             "\\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |\n"
@@ -23,8 +23,8 @@ int main() {
             "      \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |\n"
             "       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |\n"
             "        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |\n"
-            "                                `'                            '-._|" << endl;
-    cout << "Welcome to the Pokemon training simulator! To start, select 3 Pokemon to use" << endl;
+            "                                `'                            '-._|\u001b[0m" << endl;
+    cout << "Welcome to the Pokemon training simulator! To start, select 3 \u001b[33mPokemon\u001b[0m to use" << endl;
     cout << "1. Mewtwo" << endl;
     cout << "2. Pikachu" << endl;
     cout << "3. Charizard" << endl;
@@ -56,7 +56,7 @@ int main() {
     vector<Pokemon*> myPokemon;
     for (int i = 0; i < 3; i++) {
         int choice;
-        cout << "Select a Pokemon: ";
+        cout << "Select a \u001b[33mPokemon\u001b[0m: ";
         cin >> choice;
         if (choice < 1 || choice > 10) {
             cout << "Invalid choice" << endl;
@@ -68,26 +68,26 @@ int main() {
     }
 
     cout << endl;
-    cout << "===================Your starting Pokemon are:====================" << endl;
+    cout << "===================Your starting \u001b[33mPokemon\u001b[0m are:====================" << endl;
     for (int i = 0; i < myPokemon.size(); i++) {
-        cout << i + 1 << ". " << myPokemon[i]->getName() << "| HP: " << myPokemon[i]->getHp() << " | DMG: " << myPokemon[i]->getDmg() << " | PLay Style: " << myPokemon[i]->getPlayStyle() << endl;
+        cout << i + 1 << ". \u001b[32m" << myPokemon[i]->getName() << "| HP: " << myPokemon[i]->getHp() << " | DMG: " << myPokemon[i]->getDmg() << " | PLay Style: " << myPokemon[i]->getPlayStyle() << "\u001b[0m" << endl;
     }
     cout << "==================================================================" << endl << endl;
 
-    cout << "Generating random enemy Pokemon..." << endl << endl;
+    cout << "Generating random enemy \u001b[33mPokemon\u001b[0m..." << endl << endl;
     vector<Pokemon*> enemyPokemon;
     for (int i = 0; i < 3; i++) {
         int choice = rand() % 10 + 1;
         enemyPokemon.push_back(pokemon[choice - 1]);
     }
 
-    cout << "=====================Your enemy Pokemon are:======================" << endl;
+    cout << "=====================Your enemy \u001b[33mPokemon\u001b[0m are:======================" << endl;
     for (int i = 0; i < enemyPokemon.size(); i++) {
-        cout << i + 1 << ". " << enemyPokemon[i]->getName() << "| HP: " << enemyPokemon[i]->getHp() << " | DMG: " << enemyPokemon[i]->getDmg() << " | Play Style: " << enemyPokemon[i]->getPlayStyle() << endl;
+        cout << i + 1 << ". \u001b[34m" << enemyPokemon[i]->getName() << "| HP: " << enemyPokemon[i]->getHp() << " | DMG: " << enemyPokemon[i]->getDmg() << " | Play Style: " << enemyPokemon[i]->getPlayStyle() << "\u001b[0m" << endl;
     }
     cout << "==================================================================" << endl << endl;
 
-    cout << "Pick a pokemon to start with: " << endl;
+    cout << "Pick a \u001b[33mPokemon\u001b[0m to start with: " << endl;
     int choice;
     cin >> choice;
     if (choice < 1 || choice > 3) {
@@ -98,7 +98,7 @@ int main() {
     Pokemon* currentEnemy = enemyPokemon[0];
 
     cout << "=====================You have selected:======================" << endl;
-    cout << "==============~~~~~~~~~" << currentPokemon->getName() << "!~~~~~~~~~==============" << endl;
+    cout << "==============~~~~~~~~~\u001b[32m" << currentPokemon->getName() << "\u001b[0m!~~~~~~~~~==============" << endl;
     cout << "==================================================================" << endl << endl;
 
     cout << "Press enter to start the battle!" << endl;
@@ -106,13 +106,13 @@ int main() {
 
     while (!myPokemon.empty() && !enemyPokemon.empty()) {
         system("clear");
-        cout << "Current Pokemon: " << currentPokemon->getName() << " | HP: " << currentPokemon->getHp() << " | DMG: " << currentPokemon->getDmg() << " | PLay Style: " << currentPokemon->getPlayStyle() << endl;
-        cout << "Current Enemy: " << currentEnemy->getName() << " | HP: " << currentEnemy->getHp() << " | DMG: " << currentEnemy->getDmg() << " | PLay Style: " << currentEnemy->getPlayStyle() << endl;
+        cout << "Current Pokemon: \u001b[32m" << currentPokemon->getName() << " | HP: " << currentPokemon->getHp() << " | DMG: " << currentPokemon->getDmg() << " | PLay Style: " << currentPokemon->getPlayStyle() << "\u001b[0m" << endl;
+        cout << "Current Enemy: \u001b[34m" << currentEnemy->getName() << " | HP: " << currentEnemy->getHp() << " | DMG: " << currentEnemy->getDmg() << " | PLay Style: " << currentEnemy->getPlayStyle() << "\u001b[0m" << endl;
         cout << endl;
         cout << "====================Menu===================" << endl;
-        cout << "1. Change Pokemon          2. Attack" << endl;
+        cout << "1. Change \u001b[33mPokemon\u001b[0m          2. Attack" << endl;
         cout << "3. Change battle state     4. Change Attack" << endl;
-        cout << "5. Run                     6. Quit" << endl;
+        cout << "5. Run                     6. \u001b[31mQuit\u001b[0m" << endl;
         cout << "============================================" << endl;
         cout << "What would you like to do? ";
         int selection;
@@ -128,7 +128,7 @@ int main() {
             for (int i = 0; i < myPokemon.size(); i++) {
                 cout << i + 1 << ". " << myPokemon[i]->getName() << "| HP: " << myPokemon[i]->getHp() << " | DMG: " << myPokemon[i]->getDmg() << " | Play Style: " << myPokemon[i]->getPlayStyle() << endl;
             }
-            cout << "Pick a pokemon: " << endl;
+            cout << "Pick a \u001b[33mPokemon\u001b[0m: " << endl;
             int c2;
             cin >> c2;
             if (c2 < 1 || c2 > 3) {
@@ -146,30 +146,39 @@ int main() {
         else if (selection == 2) {
             cout << "=====================================BATTLE!====================================" << endl;
             cout << "--------------------------------------------------------------------------------" << endl;
-            cout << "=============================| " << currentPokemon->getName() << " | VS | " << currentEnemy->getName() << " |=============================" << endl;
+            cout << "=============================| \u001b[32m" << currentPokemon->getName() << "\u001b[0m | VS | \u001b[34m" << currentEnemy->getName() << "\u001b[0m |=============================" << endl;
             cout << "--------------------------------------------------------------------------------" << endl << endl;
 
-            if (currentPokemon->getState() == "agile") {
-                cout << "Agile state has been selected! Your pokemon will attack twice at 3/4 damage!" << endl;
+            if (currentPokemon->getPlayStyle() == "Run") {
                 currentPokemon->attack();
-                currentEnemy->takeDamage(currentPokemon->getDmg());
-
-                if (currentEnemy->getHp() > 0) {
+                //Replace current Pokemon with a different pokemon
+                int rnd = rand() % 10 + 1;
+                while (pokemon[rnd - 1] == currentPokemon) {
+                    rnd = rand() % 10 + 1;
+                }
+                currentPokemon = pokemon[rnd - 1];
+            }
+            else {
+                if (currentPokemon->getState() == "agile") {
+                    cout << "Agile state has been selected! Your pokemon will attack twice at 3/4 damage!" << endl;
                     currentPokemon->attack();
                     currentEnemy->takeDamage(currentPokemon->getDmg());
-                }
 
-                if (currentEnemy->getHp() > 0) {
+                    if (currentEnemy->getHp() > 0) {
+                        currentPokemon->attack();
+                        currentEnemy->takeDamage(currentPokemon->getDmg());
+                    }
+
                     currentEnemy->attack();
                     currentPokemon->takeDamage(currentEnemy->getDmg());
-                }
-            }
-            else if (currentPokemon->getState() == "strong") {
-                cout << "Strong state has been selected! Your pokemon will attack at double damage, but miss next turn!" << endl;
-                currentPokemon->attack();
-                currentEnemy->takeDamage(currentPokemon->getDmg());
+                } else if (currentPokemon->getState() == "strong") {
+                    cout
+                            << "Strong state has been selected! Your pokemon will attack at double damage, but miss next turn!"
+                            << endl;
+                    currentPokemon->attack();
+                    currentEnemy->takeDamage(currentPokemon->getDmg());
 
-                if (currentEnemy->getHp() > 0) {
+
                     currentEnemy->attack();
                     currentPokemon->takeDamage(currentEnemy->getDmg());
 
@@ -179,39 +188,43 @@ int main() {
                         cin.get();
                         system("clear");
 
-                        cout << "=====================================BATTLE!====================================" << endl;
-                        cout << "--------------------------------------------------------------------------------" << endl;
-                        cout << "=============================| " << currentPokemon->getName() << " | VS | " << currentEnemy->getName() << " |=============================" << endl;
-                        cout << "--------------------------------------------------------------------------------" << endl;
+                        cout << "=====================================BATTLE!===================================="
+                             << endl;
+                        cout << "--------------------------------------------------------------------------------"
+                             << endl;
+                        cout << "=============================| \u001b[32m" << currentPokemon->getName()
+                             << "\u001b[0m | VS | \u001b[34m" << currentEnemy->getName()
+                             << "\u001b[0m |=============================" << endl;
+                        cout << "--------------------------------------------------------------------------------"
+                             << endl;
                         cout << "your Pokemon has missed their attack due to fatigue!" << endl << endl;
                         currentEnemy->attack();
                         currentPokemon->takeDamage(currentEnemy->getDmg());
+                    } else {
+                        cout << currentPokemon->getName() << " has fainted!" << endl;
                     }
-                }
-            }
-            else {
-                currentPokemon->attack();
-                currentEnemy->takeDamage(currentPokemon->getDmg());
+                } else {
+                    currentPokemon->attack();
+                    currentEnemy->takeDamage(currentPokemon->getDmg());
 
-                if (currentEnemy->getHp() > 0) {
                     currentEnemy->attack();
                     currentPokemon->takeDamage(currentEnemy->getDmg());
                 }
-            }
 
-            if (currentPokemon->getHp() <= 0) {
-                myPokemon.erase(myPokemon.begin() + choice - 1);
-            }
-            if (currentEnemy->getHp() <= 0) {
-                int index = 0;
-                for (int i = 0; i < enemyPokemon.size(); i++) {
-                    if (enemyPokemon[i] == currentEnemy) {
-                        index = i;
-                        break;
-                    }
+                if (currentPokemon->getHp() <= 0) {
+                    myPokemon.erase(myPokemon.begin() + choice - 1);
                 }
-                enemyPokemon.erase(enemyPokemon.begin() + index);
-                currentEnemy = enemyPokemon[0];
+                if (currentEnemy->getHp() <= 0) {
+                    int index = 0;
+                    for (int i = 0; i < enemyPokemon.size(); i++) {
+                        if (enemyPokemon[i] == currentEnemy) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    enemyPokemon.erase(enemyPokemon.begin() + index);
+                    currentEnemy = enemyPokemon[0];
+                }
             }
             cout << "Press enter to continue" << endl;
             cin.ignore();
@@ -231,9 +244,6 @@ int main() {
                 cin.get();
                 continue;
             }
-
-            if (c3 == 2)
-
 
             currentPokemon->selectBattleState(battleStates[c3 - 1]);
         }
