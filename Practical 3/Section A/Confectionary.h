@@ -11,9 +11,9 @@ private:
     static int counter;
     int id;
 public:
+    Confectionary() = default;
     Confectionary(string manufacturer, double price, string type);
-//    virtual ~Confectionary() = 0;
+    virtual ~Confectionary() = 0;
     virtual string getDescription();
+    virtual double getPrice();
 };
-
-int Confectionary::counter = 0;

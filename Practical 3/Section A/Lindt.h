@@ -5,6 +5,5 @@
 
 class Lindt : public ConfectionaryFactory {
 public:
-    Chocolate* createChocolate(bool slab);
-    AeratedChocolate* createAeratedChocolate(int bubblespccm);
+    Chocolate* createChocolate(bool slab) override;
 };

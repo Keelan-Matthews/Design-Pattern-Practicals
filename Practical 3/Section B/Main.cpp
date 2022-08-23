@@ -66,7 +66,7 @@ int main() {
             myPokemon.push_back(pokemon[choice - 1]);
         }
     }
-
+    system("clear");
     cout << endl;
     cout << "===================Your starting \u001b[33mPokemon\u001b[0m are:====================" << endl;
     for (int i = 0; i < myPokemon.size(); i++) {
@@ -100,9 +100,6 @@ int main() {
     cout << "=====================You have selected:======================" << endl;
     cout << "==============~~~~~~~~~\u001b[32m" << currentPokemon->getName() << "\u001b[0m!~~~~~~~~~==============" << endl;
     cout << "==================================================================" << endl << endl;
-
-    cout << "Press enter to start the battle!" << endl;
-    cin.get();
 
     while (!myPokemon.empty() && !enemyPokemon.empty()) {
         system("clear");
@@ -182,11 +179,17 @@ int main() {
                     currentEnemy->attack();
                     currentPokemon->takeDamage(currentEnemy->getDmg());
 
-                    if (currentPokemon->getHp() > 0) {
+                    if (currentPokemon->getHp() > 0 && currentEnemy->getHp() > 0) {
                         cout << "Press enter to continue" << endl;
                         cin.ignore();
                         cin.get();
                         system("clear");
+
+                        cout << "====================Menu===================" << endl;
+                        cout << "1. Change \u001b[33mPokemon\u001b[0m          2. Attack" << endl;
+                        cout << "3. Change battle state     4. Change Attack" << endl;
+                        cout << "5. Run                     6. \u001b[31mQuit\u001b[0m" << endl;
+                        cout << "============================================" << endl;
 
                         cout << "=====================================BATTLE!===================================="
                              << endl;

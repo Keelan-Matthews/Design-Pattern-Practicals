@@ -15,14 +15,18 @@ int main() {
 
     cout << "Welcome to the Confectionary Factory! Today we will be making your own chocolates!" << endl;
     cout << "Please select a manufacturer:" << endl;
-    cout << "1. Cadbury\n 2. Nestle\n 3. Lindt" << endl;
+    cout << "1. Cadbury\n2. Nestle\n3. Lindt" << endl;
     int manufacturer;
     cin >> manufacturer;
 
-    cout << "Please select a type of chocolate:" << endl;
-    cout << "1. Bar\n 2. Aerated" << endl;
     int type;
-    cin >> type;
+    if (manufacturer == 3)
+        type = 1;
+    else {
+        cout << "Please select a type of chocolate:" << endl;
+        cout << "1. Bar\n2. Aerated" << endl;
+        cin >> type;
+    }
 
     if (type == 1) {
         cout << "Do you want your chocolate to be a slab? (y/n)" << endl;
@@ -48,7 +52,9 @@ int main() {
     cout << "Your chocolate is: " << confectionary[0]->getDescription() << endl;
 
     for (int i = 0; i < sizeof(confectionary); i++) {
-        delete confectionary[i];
+        if (confectionary[i] != nullptr) {
+            delete confectionary[i];
+        }
     }
 
     delete[] confectionary;

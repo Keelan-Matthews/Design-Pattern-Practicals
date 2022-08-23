@@ -1,4 +1,6 @@
 #include "Confectionary.h"
+#include <iomanip>
+int Confectionary::counter = 0;
 
 Confectionary::Confectionary(string manufacturer, double price, string type) {
     this->manufacturer = manufacturer;
@@ -8,5 +10,16 @@ Confectionary::Confectionary(string manufacturer, double price, string type) {
 }
 
 string Confectionary::getDescription() {
-    return "Confectionary " + to_string(id) + ": " + manufacturer + ". " + type + ", price: R" + to_string(price);
+    stringstream stream;
+    stream << fixed << setprecision(2) << price;
+    string s = stream.str();
+    return to_string(id) + ". Manufacturer: " + manufacturer + "\nType: " + type + "\nPrice: R" + s;
+}
+
+Confectionary::~Confectionary() {
+    cout << "Confectionary destructor called" << endl;
+}
+
+double Confectionary::getPrice() {
+    return price;
 }
