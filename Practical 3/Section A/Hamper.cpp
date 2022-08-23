@@ -26,12 +26,8 @@ void Hamper::printHamper() {
     cout << "Hamper for: " << hamperName << endl;
     this->getDescription();
 
-    double totalPrice = 0;
-    for (int i = 0; i < items.size(); i++) {
-        totalPrice += items[i]->getPrice();
-    }
     cout << "===================================" << endl;
-    cout << "Total price: " << totalPrice << endl;
+    cout << "Total price: " << this->getPrice() << endl;
     cout << "===================================" << endl;
 }
 
@@ -39,4 +35,12 @@ string Hamper::getDescription() {
     for (auto & item : items) {
         cout << item->getDescription() << endl;
     }
+}
+
+double Hamper::getPrice() {
+    double totalPrice = 0;
+    for (int i = 0; i < items.size(); i++) {
+        totalPrice += items[i]->getPrice();
+    }
+    return totalPrice;
 }

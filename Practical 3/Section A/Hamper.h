@@ -14,5 +14,6 @@ public:
     void addItem(Confectionary* item);
     void removeItem(Confectionary* item);
     string getDescription() override;
+    double getPrice() override;
     void printHamper();
 };
