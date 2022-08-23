@@ -12,6 +12,7 @@ Pokemon::Pokemon(string name, int hp, int dmg, PlayStyle *playStyle) {
     this->dmg = dmg;
     this->playStyle = playStyle;
     this->currentState = new NormalBattleState();
+    this->strongStateTurns = 0;
 }
 
 int Pokemon::attack() {

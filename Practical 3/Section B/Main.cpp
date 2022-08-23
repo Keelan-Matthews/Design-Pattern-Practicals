@@ -67,24 +67,26 @@ int main() {
         }
     }
 
-    cout << "Your Pokemon are:" << endl;
-    for (int i = 0; i < pokemon.size(); i++) {
-        cout << i + 1 << ". " << pokemon[i]->getName() << "| HP: " << pokemon[i]->getHp() << " | DMG: " << pokemon[i]->getDmg() << " | Battle State: " << pokemon[i]->getState() << endl;
+    cout << endl;
+    cout << "===================Your starting Pokemon are:====================" << endl;
+    for (int i = 0; i < myPokemon.size(); i++) {
+        cout << i + 1 << ". " << myPokemon[i]->getName() << "| HP: " << myPokemon[i]->getHp() << " | DMG: " << myPokemon[i]->getDmg() << " | PLay Style: " << myPokemon[i]->getPlayStyle() << endl;
     }
+    cout << "==================================================================" << endl << endl;
 
-    cout << "Generating random enemy Pokemon..." << endl;
+    cout << "Generating random enemy Pokemon..." << endl << endl;
     vector<Pokemon*> enemyPokemon;
     for (int i = 0; i < 3; i++) {
         int choice = rand() % 10 + 1;
         enemyPokemon.push_back(pokemon[choice - 1]);
     }
 
-    cout << "Your enemy Pokemon are:" << endl;
+    cout << "=====================Your enemy Pokemon are:======================" << endl;
     for (int i = 0; i < enemyPokemon.size(); i++) {
-        cout << i + 1 << ". " << enemyPokemon[i]->getName() << "| HP: " << enemyPokemon[i]->getHp() << " | DMG: " << enemyPokemon[i]->getDmg() << " | Battle State: " << enemyPokemon[i]->getState() << endl;
+        cout << i + 1 << ". " << enemyPokemon[i]->getName() << "| HP: " << enemyPokemon[i]->getHp() << " | DMG: " << enemyPokemon[i]->getDmg() << " | Play Style: " << enemyPokemon[i]->getPlayStyle() << endl;
     }
+    cout << "==================================================================" << endl << endl;
 
-    cout << "Battle starts!" << endl;
     cout << "Pick a pokemon to start with: " << endl;
     int choice;
     cin >> choice;
@@ -95,8 +97,18 @@ int main() {
     Pokemon* currentPokemon = myPokemon[choice - 1];
     Pokemon* currentEnemy = enemyPokemon[0];
 
-    cout << currentPokemon->getName() << " VS " << currentEnemy->getName() << endl;
+    cout << "=====================You have selected:======================" << endl;
+    cout << "==============~~~~~~~~~" << currentPokemon->getName() << "!~~~~~~~~~==============" << endl;
+    cout << "==================================================================" << endl << endl;
+
+    cout << "Press enter to start the battle!" << endl;
+    cin.get();
+
     while (!myPokemon.empty() && !enemyPokemon.empty()) {
+        system("clear");
+        cout << "Current Pokemon: " << currentPokemon->getName() << " | HP: " << currentPokemon->getHp() << " | DMG: " << currentPokemon->getDmg() << " | PLay Style: " << currentPokemon->getPlayStyle() << endl;
+        cout << "Current Enemy: " << currentEnemy->getName() << " | HP: " << currentEnemy->getHp() << " | DMG: " << currentEnemy->getDmg() << " | PLay Style: " << currentEnemy->getPlayStyle() << endl;
+        cout << endl;
         cout << "====================Menu===================" << endl;
         cout << "1. Change Pokemon          2. Attack" << endl;
         cout << "3. Change battle state     4. Change Attack" << endl;
@@ -107,36 +119,90 @@ int main() {
         cin >> selection;
         if (selection < 1 || selection > 6) {
             cout << "Invalid choice" << endl;
+            cout << "Press enter to continue" << endl;
+            cin.get();
             continue;
         }
 
         if (selection == 1) {
             for (int i = 0; i < myPokemon.size(); i++) {
-                cout << i + 1 << ". " << myPokemon[i]->getName() << "| HP: " << myPokemon[i]->getHp() << " | DMG: " << myPokemon[i]->getDmg() << " | Battle State: " << myPokemon[i]->getState() << endl;
+                cout << i + 1 << ". " << myPokemon[i]->getName() << "| HP: " << myPokemon[i]->getHp() << " | DMG: " << myPokemon[i]->getDmg() << " | Play Style: " << myPokemon[i]->getPlayStyle() << endl;
             }
             cout << "Pick a pokemon: " << endl;
             int c2;
             cin >> c2;
             if (c2 < 1 || c2 > 3) {
                 cout << "Invalid choice" << endl;
+                cout << "Press enter to continue" << endl;
+                cin.get();
                 continue;
             }
             currentPokemon = myPokemon[choice - 1];
-            cout << currentPokemon->getName() << " VS " << currentEnemy->getName() << endl;
             choice = c2;
+            cout << "Press enter to continue" << endl;
+            cin.ignore();
+            cin.get();
         }
         else if (selection == 2) {
-            currentPokemon->attack();
-            currentEnemy->takeDamage(currentPokemon->getDmg());
-            currentEnemy->attack();
-            currentPokemon->takeDamage(currentEnemy->getDmg());
+            cout << "=====================================BATTLE!====================================" << endl;
+            cout << "--------------------------------------------------------------------------------" << endl;
+            cout << "=============================| " << currentPokemon->getName() << " | VS | " << currentEnemy->getName() << " |=============================" << endl;
+            cout << "--------------------------------------------------------------------------------" << endl << endl;
+
+            if (currentPokemon->getState() == "agile") {
+                cout << "Agile state has been selected! Your pokemon will attack twice at 3/4 damage!" << endl;
+                currentPokemon->attack();
+                currentEnemy->takeDamage(currentPokemon->getDmg());
+
+                if (currentEnemy->getHp() > 0) {
+                    currentPokemon->attack();
+                    currentEnemy->takeDamage(currentPokemon->getDmg());
+                }
+
+                if (currentEnemy->getHp() > 0) {
+                    currentEnemy->attack();
+                    currentPokemon->takeDamage(currentEnemy->getDmg());
+                }
+            }
+            else if (currentPokemon->getState() == "strong") {
+                cout << "Strong state has been selected! Your pokemon will attack at double damage, but miss next turn!" << endl;
+                currentPokemon->attack();
+                currentEnemy->takeDamage(currentPokemon->getDmg());
+
+                if (currentEnemy->getHp() > 0) {
+                    currentEnemy->attack();
+                    currentPokemon->takeDamage(currentEnemy->getDmg());
+
+                    if (currentPokemon->getHp() > 0) {
+                        cout << "Press enter to continue" << endl;
+                        cin.ignore();
+                        cin.get();
+                        system("clear");
+
+                        cout << "=====================================BATTLE!====================================" << endl;
+                        cout << "--------------------------------------------------------------------------------" << endl;
+                        cout << "=============================| " << currentPokemon->getName() << " | VS | " << currentEnemy->getName() << " |=============================" << endl;
+                        cout << "--------------------------------------------------------------------------------" << endl;
+                        cout << "your Pokemon has missed their attack due to fatigue!" << endl << endl;
+                        currentEnemy->attack();
+                        currentPokemon->takeDamage(currentEnemy->getDmg());
+                    }
+                }
+            }
+            else {
+                currentPokemon->attack();
+                currentEnemy->takeDamage(currentPokemon->getDmg());
+
+                if (currentEnemy->getHp() > 0) {
+                    currentEnemy->attack();
+                    currentPokemon->takeDamage(currentEnemy->getDmg());
+                }
+            }
 
             if (currentPokemon->getHp() <= 0) {
-                cout << currentPokemon->getName() << " has fainted!" << endl;
                 myPokemon.erase(myPokemon.begin() + choice - 1);
             }
             if (currentEnemy->getHp() <= 0) {
-                cout << currentEnemy->getName() << " has fainted!" << endl;
                 int index = 0;
                 for (int i = 0; i < enemyPokemon.size(); i++) {
                     if (enemyPokemon[i] == currentEnemy) {
@@ -145,7 +211,11 @@ int main() {
                     }
                 }
                 enemyPokemon.erase(enemyPokemon.begin() + index);
+                currentEnemy = enemyPokemon[0];
             }
+            cout << "Press enter to continue" << endl;
+            cin.ignore();
+            cin.get();
         }
         else if (selection == 3) {
             for (int i = 0; i < battleStates.size(); i++) {
@@ -156,8 +226,14 @@ int main() {
             cin >> c3;
             if (c3 < 1 || c3 > 3) {
                 cout << "Invalid choice" << endl;
+                cout << "Press enter to continue" << endl;
+                cin.ignore();
+                cin.get();
                 continue;
             }
+
+            if (c3 == 2)
+
 
             currentPokemon->selectBattleState(battleStates[c3 - 1]);
         }
@@ -169,6 +245,9 @@ int main() {
             cin >> c4;
             if (c4 < 1 || c4 > 3) {
                 cout << "Invalid choice" << endl;
+                cout << "Press enter to continue" << endl;
+                cin.ignore();
+                cin.get();
                 continue;
             }
 
@@ -178,7 +257,6 @@ int main() {
             else {
                 currentPokemon->setPlayStyle(new AttackPlayStyle());
             }
-
         }
         else if (selection == 5) {
             currentPokemon->setPlayStyle(new RunPlayStyle());
@@ -187,6 +265,20 @@ int main() {
             cout << "You quit!" << endl;
             return 0;
         }
+    }
+
+    if (myPokemon.empty()) {
+        cout << "You lost!" << endl;
+    }
+    else {
+        cout << "You won!" << endl;
+    }
+
+    for (auto & i : myPokemon) {
+        delete i;
+    }
+    for (auto & i : enemyPokemon) {
+        delete i;
     }
 
     return 0;
