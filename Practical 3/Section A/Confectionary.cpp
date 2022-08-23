@@ -11,9 +11,9 @@ Confectionary::Confectionary(string manufacturer, double price, string type) {
 
 string Confectionary::getDescription() {
     stringstream stream;
-    stream << fixed << setprecision(2) << price;
+    stream << fixed << setprecision(2) << getPrice();
     string s = stream.str();
-    return to_string(id+1) + ". Manufacturer: " + manufacturer + "\nType: " + type + "\nPrice: R" + s;
+    return "Item " + to_string(id+1) + "\nManufacturer: " + manufacturer + "\nType: " + type + "\nPrice: R" + s;
 }
 
 Confectionary::~Confectionary() {
@@ -22,4 +22,8 @@ Confectionary::~Confectionary() {
 
 double Confectionary::getPrice() {
     return price;
+}
+
+Confectionary::Confectionary(double price) {
+    this->price = price;
 }

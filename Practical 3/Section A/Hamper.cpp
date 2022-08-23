@@ -1,6 +1,6 @@
 #include "Hamper.h"
 
-Hamper::Hamper(string hamperName) {
+Hamper::Hamper(string hamperName) : Confectionary(10.0) {
     this->hamperName = hamperName;
 }
 
@@ -22,25 +22,18 @@ void Hamper::removeItem(Confectionary *item) {
     }
 }
 
-void Hamper::printHamper() {
-    cout << "Hamper for: " << hamperName << endl;
-    this->getDescription();
-
-    cout << "===================================" << endl;
-    cout << "Total price: " << this->getPrice() << endl;
-    cout << "===================================" << endl;
-}
-
 string Hamper::getDescription() {
+    string description = "";
     for (auto & item : items) {
-        cout << item->getDescription() << endl;
+        description += item->getDescription() + "\n";
     }
+    return description;
 }
 
 double Hamper::getPrice() {
-    double totalPrice = 0;
-    for (int i = 0; i < items.size(); i++) {
-        totalPrice += items[i]->getPrice();
+    double price = 0.0;
+    for (auto & item : items) {
+        price += item->getPrice();
     }
-    return totalPrice;
+    return price;
 }
