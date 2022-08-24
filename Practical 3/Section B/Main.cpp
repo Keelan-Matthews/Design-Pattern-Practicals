@@ -127,6 +127,7 @@ int main() {
             }
             cout << "Pick a \u001b[33mPokemon\u001b[0m: " << endl;
             int c2;
+            cin.ignore();
             cin >> c2;
             if (c2 < 1 || c2 > 3) {
                 cout << "Invalid choice" << endl;
@@ -134,8 +135,8 @@ int main() {
                 cin.get();
                 continue;
             }
-            currentPokemon = myPokemon[choice - 1];
             choice = c2;
+            currentPokemon = myPokemon[choice - 1];
             cout << "Press enter to continue" << endl;
             cin.ignore();
             cin.get();
@@ -216,6 +217,7 @@ int main() {
 
                 if (currentPokemon->getHp() <= 0) {
                     myPokemon.erase(myPokemon.begin() + choice - 1);
+                    currentPokemon = myPokemon[0];
                 }
                 if (currentEnemy->getHp() <= 0) {
                     int index = 0;
