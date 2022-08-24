@@ -70,7 +70,7 @@ int main() {
     cout << endl;
     cout << "===================Your starting \u001b[33mPokemon\u001b[0m are:====================" << endl;
     for (int i = 0; i < myPokemon.size(); i++) {
-        cout << i + 1 << ". \u001b[32m" << myPokemon[i]->getName() << "| HP: " << myPokemon[i]->getHp() << " | DMG: " << myPokemon[i]->getDmg() << " | PLay Style: " << myPokemon[i]->getPlayStyle() << "\u001b[0m" << endl;
+        cout << i + 1 << ". \u001b[32m" << myPokemon[i]->getName() << "| HP: " << myPokemon[i]->getHp() << " | DMG: " << myPokemon[i]->getDmg() << " | Play Style: " << myPokemon[i]->getPlayStyle() << "\u001b[0m" << endl;
     }
     cout << "==================================================================" << endl << endl;
 
@@ -103,8 +103,8 @@ int main() {
 
     while (!myPokemon.empty() && !enemyPokemon.empty()) {
         system("clear");
-        cout << "Current Pokemon: \u001b[32m" << currentPokemon->getName() << " | HP: " << currentPokemon->getHp() << " | DMG: " << currentPokemon->getDmg() << " | PLay Style: " << currentPokemon->getPlayStyle() << "\u001b[0m" << endl;
-        cout << "Current Enemy: \u001b[34m" << currentEnemy->getName() << " | HP: " << currentEnemy->getHp() << " | DMG: " << currentEnemy->getDmg() << " | PLay Style: " << currentEnemy->getPlayStyle() << "\u001b[0m" << endl;
+        cout << "Current Pokemon: \u001b[32m" << currentPokemon->getName() << " | HP: " << currentPokemon->getHp() << " | DMG: " << currentPokemon->getDmg() << " | Play Style: " << currentPokemon->getPlayStyle() << "\u001b[0m" << endl;
+        cout << "Current Enemy: \u001b[34m" << currentEnemy->getName() << " | HP: " << currentEnemy->getHp() << " | DMG: " << currentEnemy->getDmg() << " | Play Style: " << currentEnemy->getPlayStyle() << "\u001b[0m" << endl;
         cout << endl;
         cout << "====================Menu===================" << endl;
         cout << "1. Change \u001b[33mPokemon\u001b[0m          2. Attack" << endl;
@@ -149,12 +149,14 @@ int main() {
 
             if (currentPokemon->getPlayStyle() == "Run") {
                 currentPokemon->attack();
-                //Replace current Pokemon with a different pokemon
-                int rnd = rand() % 10 + 1;
+                currentPokemon->setPlayStyle(new AttackPlayStyle());
+
+                int rnd = rand() % 3 + 1;
                 while (pokemon[rnd - 1] == currentPokemon) {
-                    rnd = rand() % 10 + 1;
+                    rnd = rand() % 3 + 1;
                 }
-                currentPokemon = pokemon[rnd - 1];
+                currentPokemon = myPokemon[rnd - 1];
+
             }
             else {
                 if (currentPokemon->getState() == "agile") {
@@ -185,7 +187,9 @@ int main() {
                         cin.ignore();
                         cin.get();
                         system("clear");
-
+                        cout << "Current Pokemon: \u001b[32m" << currentPokemon->getName() << " | HP: " << currentPokemon->getHp() << " | DMG: " << currentPokemon->getDmg() << " | Play Style: " << currentPokemon->getPlayStyle() << "\u001b[0m" << endl;
+                        cout << "Current Enemy: \u001b[34m" << currentEnemy->getName() << " | HP: " << currentEnemy->getHp() << " | DMG: " << currentEnemy->getDmg() << " | Play Style: " << currentEnemy->getPlayStyle() << "\u001b[0m" << endl;
+                        cout << endl;
                         cout << "====================Menu===================" << endl;
                         cout << "1. Change \u001b[33mPokemon\u001b[0m          2. Attack" << endl;
                         cout << "3. Change battle state     4. Change Attack" << endl;
