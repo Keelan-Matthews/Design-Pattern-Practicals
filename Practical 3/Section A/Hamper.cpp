@@ -27,6 +27,7 @@ string Hamper::getDescription() {
     for (auto & item : items) {
         description += item->getDescription() + "\n";
     }
+    description += "\nHamper price: R10.00\n";
     return description;
 }
 

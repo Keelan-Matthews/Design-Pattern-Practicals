@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "Discount.h"
+#include "Decorator.h"
 
-class MothersDiscount : public Discount {
+class MothersDiscount : public Decorator {
 public:
     explicit MothersDiscount(Confectionary *item);
     string getDescription() override;

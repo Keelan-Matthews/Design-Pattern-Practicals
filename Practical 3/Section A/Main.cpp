@@ -6,15 +6,15 @@
 #include "ValentinesDiscount.h"
 #include "MothersDiscount.h"
 #include "SpringDiscount.h"
+#include "Ribbon.h"
+#include "Note.h"
+#include "Card.h"
+#include "Flower.h"
 #include <iostream>
 using namespace std;
 
 int main() {
-    ConfectionaryFactory *cadburyFactory = new Cadbury();
-    ConfectionaryFactory *nestleFactory = new Nestle();
-    ConfectionaryFactory *lindtFactory = new Lindt();
-
-    ConfectionaryFactory *factories[3] = { cadburyFactory, nestleFactory, lindtFactory };
+    ConfectionaryFactory *factories[3] = { new Cadbury(), new Nestle(), new Lindt() };
 
     cout << "Thank you for shopping with Lynnwood Florists, please fill in the following information\nfor your hamper:" << endl;
     cout << "What is the date? dd Month" << endl;
@@ -73,37 +73,73 @@ int main() {
         system("clear");
     }
 
-    Confectionary* discountHamper;
+    //Applying the addon decorators to the hamper
+    cout << "Select an add-on you would like: " << endl;
+    cout << "1. Ribbon\n2. Note\n3. Card\n4. Flower\n5. None" << endl;
+    int addon;
+    cin >> addon;
 
-    if (date == "14 February") {
-        discountHamper = new ValentinesDiscount(hamper);
+    Confectionary* modHamper;
+
+    if (addon == 1) {
+        cout << "What color ribbon would you like?" << endl;
+        string color;
+        cin.ignore();
+        cin >> color;
+        modHamper = new Ribbon(hamper, color);
     }
-    else if (date == "14 May") {
-        discountHamper = new MothersDiscount(hamper);
+    else if (addon == 2) {
+        cout << "Please enter the message you want to include on the note:" << endl;
+        string message;
+        cin.ignore();
+        getline(cin, message);
+        modHamper = new Note(hamper, message);
     }
-    else if (date == "1 September") {
-        discountHamper = new SpringDiscount(hamper);
+    else if (addon == 3) {
+        cout << "Please enter the message you want to include on the card:" << endl;
+        string message;
+        cin.ignore();
+        getline(cin, message);
+        modHamper = new Card(hamper, message);
+    }
+    else if (addon == 4) {
+        cout << "Please enter the type of flower you would like:" << endl;
+        string variety;
+        cin.ignore();
+        getline(cin, variety);
+        modHamper = new Flower(hamper, variety);
+    }
+    else if (addon == 5) {
+        modHamper = hamper;
     }
     else {
-        discountHamper = nullptr;
+        cout << "Invalid input" << endl;
+    }
+
+    //Applying the discount decorator to the hamper
+
+    Confectionary* discountHamper;
+
+    if (date == "14 February" && modHamper->discountable()) {
+        discountHamper = new ValentinesDiscount(modHamper);
+    }
+    else if (date == "14 May" && modHamper->discountable()) {
+        discountHamper = new MothersDiscount(modHamper);
+    }
+    else if (date == "1 September" && modHamper->discountable()) {
+        discountHamper = new SpringDiscount(modHamper);
+    }
+    else {
+        discountHamper = modHamper;
     }
 
     cout << "==========================================================================" << endl;
     cout << "Your items have been added, here is your hamper:" << endl;
-    if (discountHamper != nullptr) {
-        cout << discountHamper->getDescription() << endl;
-        stringstream stream;
-        stream << fixed << setprecision(2) << discountHamper->getPrice();
-        string s = stream.str();
-        cout << "Price: " << s << endl;
-    }
-    else {
-        cout << hamper->getDescription() << endl;
-        stringstream stream;
-        stream << fixed << setprecision(2) << hamper->getPrice();
-        string s = stream.str();
-        cout << "Price: " << s << endl;
-    }
+    cout << discountHamper->getDescription() << endl;
+    stringstream stream;
+    stream << fixed << setprecision(2) << discountHamper->getPrice();
+    string s = stream.str();
+    cout << "Price: " << s << endl;
     cout << "==========================================================================" << endl;
 
     cout << "Come again soon!" << endl;

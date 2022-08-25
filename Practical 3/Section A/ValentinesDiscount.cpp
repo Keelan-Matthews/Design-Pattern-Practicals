@@ -1,6 +1,6 @@
 #include "ValentinesDiscount.h"
 
-ValentinesDiscount::ValentinesDiscount(Confectionary *item) : Discount(item) {
+ValentinesDiscount::ValentinesDiscount(Confectionary *item) : Decorator(item) {
     this->item = item;
 }
 

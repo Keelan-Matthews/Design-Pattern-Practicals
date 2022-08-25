@@ -27,3 +27,7 @@ double Confectionary::getPrice() {
 Confectionary::Confectionary(double price) {
     this->price = price;
 }
+
+void Confectionary::setPrice(double price) {
+    this->price = price;
+}

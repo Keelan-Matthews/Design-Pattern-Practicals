@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "Discount.h"
+#include "Decorator.h"
 
-class SpringDiscount : public Discount {
+class SpringDiscount : public Decorator {
 public:
     explicit SpringDiscount(Confectionary *item);
     string getDescription() override;

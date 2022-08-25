@@ -1,6 +1,6 @@
 #include "MothersDiscount.h"
 
-MothersDiscount::MothersDiscount(Confectionary *item) : Discount(item) {
+MothersDiscount::MothersDiscount(Confectionary *item) : Decorator(item) {
     this->item = item;
 }
 

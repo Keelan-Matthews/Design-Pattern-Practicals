@@ -1,6 +1,6 @@
 #include "SpringDiscount.h"
 
-SpringDiscount::SpringDiscount(Confectionary *item) : Discount(item) {
+SpringDiscount::SpringDiscount(Confectionary *item) : Decorator(item) {
     this->item = item;
 }
 

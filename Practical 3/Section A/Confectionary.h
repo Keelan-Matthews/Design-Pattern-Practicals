@@ -16,4 +16,7 @@ public:
     virtual ~Confectionary() = 0;
     virtual string getDescription();
     virtual double getPrice();
+    virtual void setPrice(double price);
+    virtual bool discountable() { return false; };
+    virtual bool isMultiple() { return false; };
 };

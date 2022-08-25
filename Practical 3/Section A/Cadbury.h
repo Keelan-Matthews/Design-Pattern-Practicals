@@ -3,6 +3,6 @@
 
 class Cadbury : public ConfectionaryFactory {
 public:
-    Chocolate* createChocolate(bool slab);
-    AeratedChocolate* createAeratedChocolate(int bubblespccm);
+    Chocolate* createChocolate(bool slab) override;
+    AeratedChocolate* createAeratedChocolate(int bubblespccm) override;
 };

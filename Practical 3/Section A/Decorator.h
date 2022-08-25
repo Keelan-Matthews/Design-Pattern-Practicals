@@ -4,11 +4,11 @@
 
 #include "Confectionary.h"
 
-class Discount : public Confectionary {
+class Decorator : public Confectionary {
 protected:
     Confectionary *item;
 public:
-    explicit Discount(Confectionary *item);
+    explicit Decorator(Confectionary *item);
     string getDescription() override;
     double getPrice() override;
 };
