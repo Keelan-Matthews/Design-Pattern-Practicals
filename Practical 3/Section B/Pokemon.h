@@ -4,6 +4,7 @@
 #include "PlayStyle.h"
 using namespace std;
 
+
 class Pokemon {
 private:
     string name;
