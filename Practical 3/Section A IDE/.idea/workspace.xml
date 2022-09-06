@@ -19,11 +19,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31283e67-1655-48fd-8bef-2c03c1eeaa1d" name="Changes" comment="Implemented Decorator Addons">
-      <change beforePath="$PROJECT_DIR$/../Section A/.idea/Section A.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Section A/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Section A/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Section A/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Section A/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-08-28T11-41-15-0925.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Section_A.dir/compiler_depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Section_A.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Section_A.dir/compiler_depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +63,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Project.color": "62331b",
+    "Project.color": "105706",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -70,7 +71,7 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "G:/My Drive/University/Year 2/Semester 2/COS 214/Practicals/Practical 3/Section A IDE",
+    "last_opened_file_path": "G:/My Drive/University/Year 2/Semester 2/COS 214/Practicals/Practical 4/Task 1",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "CPPToolchains",
     "structure.view.defaults.are.configured": "true"
@@ -117,6 +118,8 @@
       <workItem from="1661433455822" duration="3018000" />
       <workItem from="1661603063221" duration="1444000" />
       <workItem from="1661685737655" duration="1184000" />
+      <workItem from="1662445745298" duration="189000" />
+      <workItem from="1662446095196" duration="120000" />
     </task>
     <task id="LOCAL-00001" summary="struggled">
       <created>1661177595039</created>
