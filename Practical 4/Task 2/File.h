@@ -18,7 +18,16 @@ public:
     string getName() override;
     string getContent();
     void setName(string name) override;
-    void setContent(string content);
+    void setContent(string content) override;
     void print() override;
     FileComponent* clone() override;
+    void addFile(FileComponent* file) override {NULL;}
+    void removeFile(FileComponent* file) override {NULL;}
+    void addDirectory(FileComponent* directory) override {NULL;}
+    void removeDirectory(FileComponent* directory) override {NULL;}
+    bool isEmpty() override {return content.empty();}
+    bool listFiles() override {return false;}
+    bool listDirectories() override {return false;}
+    NodeIterator* createFolderIterator() override {return nullptr;}
+    NodeIterator* createFileIterator() override;
 };

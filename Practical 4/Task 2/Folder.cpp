@@ -1,5 +1,6 @@
 #include "Folder.h"
-
+#include "DirectoryIterator.h"
+#include "FileIterator.h"
 #include <utility>
 
 Folder::Folder(string name) {
@@ -83,6 +84,10 @@ bool Folder::listDirectories() {
     return true;
 }
 
-NodeIterator *Folder::createIterator() {
-    return new NodeIterator(this->folders);
+NodeIterator *Folder::createFolderIterator() {
+    return new DirectoryIterator(this->folders);
+}
+
+NodeIterator *Folder::createFileIterator() {
+    return new FileIterator(this->files);
 }

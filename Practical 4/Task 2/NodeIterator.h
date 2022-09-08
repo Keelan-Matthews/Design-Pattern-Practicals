@@ -10,13 +10,9 @@
 #include <vector>
 
 class NodeIterator {
-private:
-    vector<FileComponent*> vectorContent;
-    int index;
 public:
-    explicit NodeIterator(vector<FileComponent*> vector);
-    virtual bool hasNext();
-    virtual void next();
-    virtual FileComponent* current();
-    virtual void first();
+    virtual bool hasNext() = 0;
+    virtual FileComponent* next() = 0;
+    virtual FileComponent* current() = 0;
+    virtual void first() = 0;
 };

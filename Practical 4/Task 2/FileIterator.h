@@ -1,5 +1,5 @@
 /*
- *  DirectoryIterator.h
+ *  FileIterator.h
  *  Created on: 9/8/2022.
  *  Author: Keelan Matthews (u21549967)
  */
@@ -8,13 +8,14 @@
 
 
 #include "NodeIterator.h"
+#include "File.h"
 
-class DirectoryIterator : public NodeIterator {
+class FileIterator : public NodeIterator {
 private:
-    vector<FileComponent*> folders;
+    vector<FileComponent*> files;
     int index;
 public:
-    explicit DirectoryIterator(vector<FileComponent*> vector);
+    explicit FileIterator(vector<FileComponent*> vector);
     bool hasNext() override;
     FileComponent* next() override;
     FileComponent* current() override;

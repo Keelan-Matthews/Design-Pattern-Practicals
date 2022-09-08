@@ -16,6 +16,7 @@ class FileComponent {
 public:
     virtual string getName() = 0;
     virtual void setName(string name) = 0;
+    virtual void setContent(string content) = 0;
     virtual void print() = 0;
     virtual FileComponent* clone() = 0;
     virtual void addFile(FileComponent* file) = 0;
@@ -25,5 +26,6 @@ public:
     virtual bool isEmpty() = 0;
     virtual bool listFiles() = 0;
     virtual bool listDirectories() = 0;
-    virtual NodeIterator* createIterator() = 0;
+    virtual NodeIterator* createFolderIterator() = 0;
+    virtual NodeIterator* createFileIterator() = 0;
 };

@@ -8,6 +8,7 @@
 #pragma once
 #include <vector>
 #include "FileComponent.h"
+#include "File.h"
 
 class Folder : public FileComponent {
 private:
@@ -18,6 +19,7 @@ public:
     explicit Folder(string name);
     string getName() override;
     void setName(string name) override;
+    void setContent(string content) override {NULL;}
     void addFile(FileComponent* file) override;
     void removeFile(FileComponent* file) override;
     void print() override;
@@ -27,5 +29,6 @@ public:
     bool isEmpty() override;
     bool listFiles() override;
     bool listDirectories() override;
-    NodeIterator* createIterator() override;
+    NodeIterator* createFolderIterator() override;
+    NodeIterator* createFileIterator() override;
 };
