@@ -11,9 +11,8 @@ bool DirectoryIterator::hasNext() {
     return index < folders.size();
 }
 
-FileComponent* DirectoryIterator::next() {
+void DirectoryIterator::next() {
     index++;
-    return folders[index];
 }
 
 FileComponent *DirectoryIterator::current() {

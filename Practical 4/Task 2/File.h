@@ -29,5 +29,5 @@ public:
     bool listFiles() override {return false;}
     bool listDirectories() override {return false;}
     NodeIterator* createFolderIterator() override {return nullptr;}
-    NodeIterator* createFileIterator() override;
+    NodeIterator* createFileIterator() override {return nullptr;}
 };

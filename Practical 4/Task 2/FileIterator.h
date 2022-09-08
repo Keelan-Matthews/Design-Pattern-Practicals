@@ -17,7 +17,7 @@ private:
 public:
     explicit FileIterator(vector<FileComponent*> vector);
     bool hasNext() override;
-    FileComponent* next() override;
+    void next() override;
     FileComponent* current() override;
     void first() override;
 };

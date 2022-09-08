@@ -32,7 +32,3 @@ void File::print() {
 FileComponent *File::clone() {
     return new File(this->name + "-copy", this->content);
 }
-
-NodeIterator *File::createFileIterator() {
-    return new FileIterator(this);
-}

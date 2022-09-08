@@ -9,10 +9,12 @@
 #include "FileComponent.h"
 #include <vector>
 
+class FileComponent;
+
 class NodeIterator {
 public:
     virtual bool hasNext() = 0;
-    virtual FileComponent* next() = 0;
+    virtual void next() = 0;
     virtual FileComponent* current() = 0;
     virtual void first() = 0;
 };

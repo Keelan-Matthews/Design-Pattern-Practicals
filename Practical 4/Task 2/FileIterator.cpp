@@ -10,9 +10,8 @@ bool FileIterator::hasNext() {
     return index < files.size();
 }
 
-FileComponent* FileIterator::next() {
+void FileIterator::next() {
     index++;
-    return files[index];
 }
 
 FileComponent *FileIterator::current() {
