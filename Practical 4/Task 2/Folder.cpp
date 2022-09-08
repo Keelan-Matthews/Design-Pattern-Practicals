@@ -42,3 +42,47 @@ FileComponent *Folder::clone() {
     }
     return folder;
 }
+
+void Folder::addDirectory(FileComponent *directory) {
+    this->folders.push_back(directory);
+
+}
+
+void Folder::removeDirectory(FileComponent *directory) {
+    for (int i = 0; i < this->folders.size(); i++) {
+        if (this->folders[i] == directory) {
+            this->folders.erase(this->folders.begin() + i);
+            return;
+        }
+    }
+}
+
+bool Folder::isEmpty() {
+    return this->folders.empty();
+}
+
+bool Folder::listFiles() {
+    if (this->files.empty()) {
+        cout << "No files in this folder" << endl;
+        return false;
+    }
+    for (auto & file : this->files) {
+        cout << file->getName() << endl;
+    }
+    return true;
+}
+
+bool Folder::listDirectories() {
+    if (this->folders.empty()) {
+        cout << "No folders in this folder" << endl;
+        return false;
+    }
+    for (auto & folder : this->folders) {
+        cout << folder->getName() << endl;
+    }
+    return true;
+}
+
+NodeIterator *Folder::createIterator() {
+    return new NodeIterator(this->folders);
+}
