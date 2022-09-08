@@ -11,7 +11,6 @@ using namespace std;
 int main() {
     string path = "keelan@Keelans-Laptop";
     string input;
-    string commands = {"cd, list, exit, rm"};
     string currentDir = "/root";
 
 //    Set up a predefined directory structure
@@ -33,7 +32,6 @@ int main() {
     while (input.substr(0, input.find(' ')) != "exit") {
         cout << path << currentDir << " ==> ";
         getline(cin, input);
-        cin.ignore();
 
         if (input.substr(0, input.find(' ')) == "cd") {
             string dir = input.substr(input.find(' ') + 1);
@@ -51,25 +49,43 @@ int main() {
 
             if (!found) cout << "Directory does not exist" << endl;
         } else if (input.substr(0, input.find(' ')) == "list") {
-            while (it->hasNext()) {
-                cout << it->next()->getName() << endl;
+            cout << "Directories:" << endl;
+            current->listDirectories();
+            cout << "Files:" << endl;
+            current->listFiles();
+        } else if (input.substr(0, input.find(" ")) == "rm") {
+            NodeIterator *it = current->createFolderIterator();
+            NodeIterator *it2 = current->createFileIterator();
+            string dir = input.substr(input.find(' ') + 1);
+
+            bool folder = false;
+            bool file = false;
+            for (it->first(); it->hasNext(); it->next()) {
+                if (it->current()->getName() == dir) {
+                    folder = true;
+                    break;
+                }
             }
-            while (it2->hasNext()) {
-                cout << it2->next()->getName() << endl;
+
+            if (!folder) {
+                for (it2->first(); it2->hasNext(); it2->next()) {
+                    if (it2->current()->getName() == dir) {
+                        file = true;
+                        break;
+                    }
+                }
             }
+
+            if (folder) {
+                current->removeDirectory(it->current());
+            } else if (file) {
+                current->removeFile(it2->current());
+            } else {
+                cout << "File or directory does not exist" << endl;
+            }
+        } else if (input.substr(0, input.find(" ")) == "print") {
+            current->print();
         }
-//        } else if (input.substr(0, input.find(" ")) == "rm") {
-//            while (it->hasNext()) {
-//                if (it->next()->getName() == input.substr(input.find(" ") + 1)) {
-//                    current->removeDirectory(it->next());
-//                }
-//            }
-//            while (it2->hasNext()) {
-//                if (it2->next()->getName() == input.substr(input.find(" ") + 1)) {
-//                    current->removeFile(it2->next());
-//                }
-//            }
-//        }
     }
 
     return 0;
