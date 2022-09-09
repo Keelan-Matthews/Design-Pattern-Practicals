@@ -41,7 +41,6 @@ int main() {
 
     Folder *current = root;
 
-//    If the letters before the first space in input are in the commands array
     while (input.substr(0, input.find(' ')) != "exit") {
         cout << path << currentDir << " ==> ";
         getline(cin, input);
@@ -98,6 +97,69 @@ int main() {
             }
         } else if (input.substr(0, input.find(" ")) == "print") {
             current->print();
+        } else if (input.substr(0, input.find(" ")) == "copy") {
+            NodeIterator *it = current->createFolderIterator();
+            NodeIterator *it2 = current->createFileIterator();
+            string dir = input.substr(input.find(' ') + 1);
+
+            bool folder = false;
+            bool file = false;
+            for (it->first(); it->hasNext(); it->next()) {
+                if (it->current()->getName() == dir) {
+                    folder = true;
+                    break;
+                }
+            }
+
+            if (!folder) {
+                for (it2->first(); it2->hasNext(); it2->next()) {
+                    if (it2->current()->getName() == dir) {
+                        file = true;
+                        break;
+                    }
+                }
+            }
+
+            if (folder) {
+                FileComponent *clone = it->current()->clone();
+                current->addDirectory((Folder *) clone);
+            } else if (file) {
+                FileComponent *clone = it2->current()->clone();
+                current->addFile((File *) clone);
+            } else {
+                cout << "File or directory does not exist" << endl;
+            }
+        } else if (input.substr(0, input.find(" ")) == "rename") {
+            NodeIterator *it = current->createFolderIterator();
+            NodeIterator *it2 = current->createFileIterator();
+            string dir = input.substr(input.find(' ') + 1);
+            string newName = input.substr(input.find_last_of(' ') + 1);
+
+            bool folder = false;
+            bool file = false;
+            for (it->first(); it->hasNext(); it->next()) {
+                if (it->current()->getName() == dir) {
+                    folder = true;
+                    break;
+                }
+            }
+
+            if (!folder) {
+                for (it2->first(); it2->hasNext(); it2->next()) {
+                    if (it2->current()->getName() == dir) {
+                        file = true;
+                        break;
+                    }
+                }
+            }
+
+            if (folder) {
+                it->current()->setName(newName);
+            } else if (file) {
+                it2->current()->setName(newName);
+            } else {
+                cout << "File or directory does not exist" << endl;
+            }
         }
     }
 
