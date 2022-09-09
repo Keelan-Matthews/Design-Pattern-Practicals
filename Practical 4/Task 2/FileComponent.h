@@ -7,12 +7,16 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <vector>
 #include "NodeIterator.h"
+#include "Observer.h"
 
 using namespace std;
 class NodeIterator;
-
+class Observer;
 class FileComponent {
+protected:
+    vector<Observer*> observers;
 public:
     virtual string getName() = 0;
     virtual void setName(string name) = 0;
@@ -28,4 +32,6 @@ public:
     virtual bool listDirectories() = 0;
     virtual NodeIterator* createFolderIterator() = 0;
     virtual NodeIterator* createFileIterator() = 0;
+    void attach(Observer* o) {observers.push_back(o);}
+    virtual void notify() = 0;
 };

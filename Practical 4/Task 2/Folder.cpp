@@ -13,19 +13,21 @@ string Folder::getName() {
 
 void Folder::setName(string name) {
     this->name = std::move(name);
+    this->notify();
 }
 
 void Folder::addFile(FileComponent *file) {
     this->files.push_back(file);
+    this->notify();
 }
 
 void Folder::removeFile(FileComponent *file) {
     for (int i = 0; i < this->files.size(); i++) {
         if (this->files[i] == file) {
             this->files.erase(this->files.begin() + i);
-            return;
         }
     }
+    this->notify();
 }
 
 void Folder::print() {
@@ -41,21 +43,22 @@ FileComponent *Folder::clone() {
     for (auto & file : this->files) {
         folder->addFile(file->clone());
     }
+    this->notify();
     return folder;
 }
 
 void Folder::addDirectory(FileComponent *directory) {
     this->folders.push_back(directory);
-
+    this->notify();
 }
 
 void Folder::removeDirectory(FileComponent *directory) {
     for (int i = 0; i < this->folders.size(); i++) {
         if (this->folders[i] == directory) {
             this->folders.erase(this->folders.begin() + i);
-            return;
         }
     }
+    this->notify();
 }
 
 bool Folder::isEmpty() {
@@ -90,4 +93,10 @@ NodeIterator *Folder::createFolderIterator() {
 
 NodeIterator *Folder::createFileIterator() {
     return new FileIterator(this->files);
+}
+
+void Folder::notify() {
+    for (auto & observer : this->observers) {
+        observer->update();
+    }
 }

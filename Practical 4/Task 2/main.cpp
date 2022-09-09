@@ -1,11 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <limits>
 #include "FileComponent.h"
 #include "Folder.h"
 #include "DirectoryIterator.h"
 #include "NodeIterator.h"
 #include "File.h"
+#include "FolderObserver.h"
+#include "FileObserver.h"
+
 using namespace std;
 
 int main() {
@@ -21,10 +25,19 @@ int main() {
     File *poem = new File("poem.txt", "I am a file\nI'm in a directory\nI'm not a directory\nI'm a file\n");
     File *story = new File("story.txt", "Once upon a time\nThere was a file\nIt was in a directory\nIt was not a directory\n");
 
+    root->attach(new FolderObserver(root));
+
     root->addDirectory(home);
+    root->attach(new FolderObserver(home));
+
     home->addDirectory(documents);
+    root->attach(new FolderObserver(documents));
+
     documents->addFile(poem);
+    root->attach(new FileObserver(poem));
+
     documents->addFile(story);
+    root->attach(new FileObserver(story));
 
     Folder *current = root;
 

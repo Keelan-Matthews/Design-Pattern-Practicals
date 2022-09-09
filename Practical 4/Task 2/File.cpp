@@ -18,10 +18,12 @@ string File::getContent() {
 
 void File::setName(string name) {
     this->name = std::move(name);
+    this->notify();
 }
 
 void File::setContent(string content) {
     this->content = std::move(content);
+    this->notify();
 }
 
 void File::print() {
@@ -31,4 +33,11 @@ void File::print() {
 
 FileComponent *File::clone() {
     return new File(this->name + "-copy", this->content);
+    this->notify();
+}
+
+void File::notify() {
+    for (auto & observer : this->observers) {
+        observer->update();
+    }
 }

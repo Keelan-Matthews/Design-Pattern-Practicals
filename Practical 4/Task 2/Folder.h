@@ -31,4 +31,5 @@ public:
     bool listDirectories() override;
     NodeIterator* createFolderIterator() override;
     NodeIterator* createFileIterator() override;
+    void notify() override;
 };
