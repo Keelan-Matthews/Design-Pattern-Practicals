@@ -1,10 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <limits>
 #include "FileComponent.h"
 #include "Folder.h"
-#include "DirectoryIterator.h"
 #include "NodeIterator.h"
 #include "File.h"
 #include "FolderObserver.h"
@@ -12,12 +10,30 @@
 
 using namespace std;
 
+FileComponent* findCurrent(Folder *current, string dir) {
+    NodeIterator *it = current->createFolderIterator();
+    NodeIterator *it2 = current->createFileIterator();
+
+    for (it->first(); it->hasNext(); it->next()) {
+        if (it->current()->getName() == dir) {
+            return it->current();
+        }
+    }
+
+    for (it2->first(); it2->hasNext(); it2->next()) {
+        if (it2->current()->getName() == dir) {
+            return it2->current();
+        }
+    }
+
+    return nullptr;
+}
+
 int main() {
     string path = "keelan@Keelans-Laptop";
     string input;
     string currentDir = "/root";
 
-//    Set up a predefined directory structure
     Folder *root = new Folder("root");
     Folder *home = new Folder("home");
     Folder *documents = new Folder("documents");
@@ -42,7 +58,7 @@ int main() {
     Folder *current = root;
 
     while (input.substr(0, input.find(' ')) != "exit") {
-        cout << path << currentDir << " ==> ";
+        cout << path << currentDir << " ~$~ ";
         getline(cin, input);
 
         if (input.substr(0, input.find(' ')) == "cd") {
@@ -65,100 +81,41 @@ int main() {
             current->listDirectories();
             cout << "Files:" << endl;
             current->listFiles();
-        } else if (input.substr(0, input.find(" ")) == "rm") {
-            NodeIterator *it = current->createFolderIterator();
-            NodeIterator *it2 = current->createFileIterator();
+        } else if (input.substr(0, input.find(' ')) == "rm") {
             string dir = input.substr(input.find(' ') + 1);
+            FileComponent *type = findCurrent(current, dir);
 
-            bool folder = false;
-            bool file = false;
-            for (it->first(); it->hasNext(); it->next()) {
-                if (it->current()->getName() == dir) {
-                    folder = true;
-                    break;
-                }
-            }
-
-            if (!folder) {
-                for (it2->first(); it2->hasNext(); it2->next()) {
-                    if (it2->current()->getName() == dir) {
-                        file = true;
-                        break;
-                    }
-                }
-            }
-
-            if (folder) {
-                current->removeDirectory(it->current());
-            } else if (file) {
-                current->removeFile(it2->current());
-            } else {
+            if (type == nullptr) {
                 cout << "File or directory does not exist" << endl;
+            } else if (type->isFile()) {
+                current->removeFile(type);
+            } else {
+                current->removeDirectory(type);
             }
-        } else if (input.substr(0, input.find(" ")) == "print") {
+        } else if (input.substr(0, input.find(' ')) == "print") {
             current->print();
-        } else if (input.substr(0, input.find(" ")) == "copy") {
-            NodeIterator *it = current->createFolderIterator();
-            NodeIterator *it2 = current->createFileIterator();
+        } else if (input.substr(0, input.find(' ')) == "copy") {
             string dir = input.substr(input.find(' ') + 1);
+            FileComponent *type = findCurrent(current, dir);
 
-            bool folder = false;
-            bool file = false;
-            for (it->first(); it->hasNext(); it->next()) {
-                if (it->current()->getName() == dir) {
-                    folder = true;
-                    break;
-                }
-            }
-
-            if (!folder) {
-                for (it2->first(); it2->hasNext(); it2->next()) {
-                    if (it2->current()->getName() == dir) {
-                        file = true;
-                        break;
-                    }
-                }
-            }
-
-            if (folder) {
-                FileComponent *clone = it->current()->clone();
-                current->addDirectory((Folder *) clone);
-            } else if (file) {
-                FileComponent *clone = it2->current()->clone();
+            if (type == nullptr) {
+                cout << "File or directory does not exist" << endl;
+            } else if (type->isFile()) {
+                FileComponent *clone = type->clone();
                 current->addFile((File *) clone);
             } else {
-                cout << "File or directory does not exist" << endl;
+                FileComponent *clone = type->clone();
+                current->addDirectory((Folder *) clone);
             }
-        } else if (input.substr(0, input.find(" ")) == "rename") {
-            NodeIterator *it = current->createFolderIterator();
-            NodeIterator *it2 = current->createFileIterator();
+        } else if (input.substr(0, input.find(' ')) == "rename") {
             string dir = input.substr(input.find(' ') + 1);
             string newName = input.substr(input.find_last_of(' ') + 1);
+            FileComponent *type = findCurrent(current, dir);
 
-            bool folder = false;
-            bool file = false;
-            for (it->first(); it->hasNext(); it->next()) {
-                if (it->current()->getName() == dir) {
-                    folder = true;
-                    break;
-                }
-            }
-
-            if (!folder) {
-                for (it2->first(); it2->hasNext(); it2->next()) {
-                    if (it2->current()->getName() == dir) {
-                        file = true;
-                        break;
-                    }
-                }
-            }
-
-            if (folder) {
-                it->current()->setName(newName);
-            } else if (file) {
-                it2->current()->setName(newName);
-            } else {
+            if (type == nullptr) {
                 cout << "File or directory does not exist" << endl;
+            }  else {
+                type->setName(newName);
             }
         }
     }

@@ -28,6 +28,7 @@ public:
     virtual void addDirectory(FileComponent* directory) = 0;
     virtual void removeDirectory(FileComponent* directory) = 0;
     virtual bool isEmpty() = 0;
+    virtual bool isFile() = 0;
     virtual bool listFiles() = 0;
     virtual bool listDirectories() = 0;
     virtual NodeIterator* createFolderIterator() = 0;

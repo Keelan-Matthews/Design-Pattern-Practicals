@@ -32,4 +32,5 @@ public:
     NodeIterator* createFolderIterator() override;
     NodeIterator* createFileIterator() override;
     void notify() override;
+    bool isFile() override {return false;}
 };

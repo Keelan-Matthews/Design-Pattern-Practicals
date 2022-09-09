@@ -39,12 +39,15 @@ void Folder::print() {
 }
 
 FileComponent *Folder::clone() {
-    auto* folder = new Folder(this->name + "-copy");
+    auto* newFolder = new Folder(this->name + "-copy");
+    for (auto & folder : this->folders) {
+        newFolder->addFile(folder->clone());
+    }
     for (auto & file : this->files) {
-        folder->addFile(file->clone());
+        newFolder->addFile(file->clone());
     }
     this->notify();
-    return folder;
+    return newFolder;
 }
 
 void Folder::addDirectory(FileComponent *directory) {
