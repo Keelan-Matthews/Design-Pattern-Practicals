@@ -7,10 +7,11 @@
 #include "File.h"
 #include "FolderObserver.h"
 #include "AntiVirus.h"
+#include "Caretaker.h"
 
 using namespace std;
 
-FileComponent* findCurrent(Folder *current, string dir) {
+FileComponent* findCurrent(FileComponent *current, string dir) {
     NodeIterator *it = current->createFolderIterator();
     NodeIterator *it2 = current->createFileIterator();
 
@@ -30,13 +31,14 @@ FileComponent* findCurrent(Folder *current, string dir) {
 }
 
 int main() {
-    string path = "keelan@Keelans-Laptop";
+    string path = "keelan@Keelans-Laptop: ";
     string input;
     string currentDir = "/root";
 
-    Folder *root = new Folder("root");
-    Folder *home = new Folder("home");
-    Folder *documents = new Folder("documents");
+    FileComponent *root = new Folder("root");
+    auto *caretaker = new Caretaker(root);
+    FileComponent *home = new Folder("home");
+    FileComponent *documents = new Folder("documents");
 
     File *poem = new File("poem.txt", "I am a file\nI'm in a directory\nI'm not a directory\nI'm a file\n");
     File *story = new File("story.txt", "Once upon a time\nThere was a file\nIt was in a directory\nIt was not a directory\n");
@@ -50,15 +52,15 @@ int main() {
     root->attach(new FolderObserver(documents));
 
     documents->addFile(poem);
-    root->attach(new AntiVirus(poem));
+    poem->attach(new AntiVirus(poem));
 
     documents->addFile(story);
-    root->attach(new AntiVirus(story));
+    story->attach(new AntiVirus(story));
 
-    Folder *current = root;
+    FileComponent *current = root;
 
     while (input.substr(0, input.find(' ')) != "exit") {
-        cout << path << currentDir << " ~$~ ";
+        cout << "\u001b[33m" << path << "\u001b[0m\u001b[36m" << currentDir << " ~$~ \u001b[0m";
         getline(cin, input);
 
         if (input.substr(0, input.find(' ')) == "cd") {
@@ -108,7 +110,7 @@ int main() {
                 current->addDirectory((Folder *) clone);
             }
         } else if (input.substr(0, input.find(' ')) == "rename") {
-            string dir = input.substr(input.find(' ') + 1);
+            string dir = input.substr(input.find(' ') + 1, input.find_last_of(' ') - input.find(' ') - 1);
             string newName = input.substr(input.find_last_of(' ') + 1);
             FileComponent *type = findCurrent(current, dir);
 
@@ -117,6 +119,12 @@ int main() {
             }  else {
                 type->setName(newName);
             }
+        } else if (input.substr(0, input.find(' ')) == "backup") {
+            caretaker->backup();
+        } else if (input.substr(0, input.find(' ')) == "undo") {
+            caretaker->undo();
+        } else {
+            cout << "Command not found" << endl;
         }
     }
 

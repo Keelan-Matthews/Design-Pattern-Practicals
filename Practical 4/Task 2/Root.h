@@ -7,7 +7,9 @@
 #pragma once
 
 
-#include "FileComponent.h"
+class FileComponent;
+#include <vector>
+using namespace std;
 
 class Root {
 private:

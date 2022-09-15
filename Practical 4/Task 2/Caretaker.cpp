@@ -13,8 +13,8 @@ void Caretaker::undo() {
     }
 }
 
-void Caretaker::backup(Root *state) {
-    this->state.push_back(state);
+void Caretaker::backup() {
+    this->state.push_back(root->save());
 }
 
 void Caretaker::clean() {
