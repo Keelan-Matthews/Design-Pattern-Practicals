@@ -1,5 +1,5 @@
 /*
- *  FileObserver.h
+ *  AntiVirus.h
  *  Created on: 9/9/2022.
  *  Author: Keelan Matthews (u21549967)
  */
@@ -9,10 +9,10 @@
 
 #include "Observer.h"
 
-class FileObserver : public Observer {
+class AntiVirus : public Observer {
 private:
     string name;
 public:
-    explicit FileObserver(FileComponent* subject);
+    explicit AntiVirus(FileComponent* subject);
     void update() override;
 };

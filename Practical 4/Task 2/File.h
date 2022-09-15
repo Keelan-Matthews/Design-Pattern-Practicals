@@ -32,4 +32,6 @@ public:
     NodeIterator* createFileIterator() override {return nullptr;}
     void notify() override;
     bool isFile() override {return true;}
+    Root* save() override {return nullptr;}
+    void restore(Root* root) override {NULL;}
 };

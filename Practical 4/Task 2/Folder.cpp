@@ -103,3 +103,13 @@ void Folder::notify() {
         observer->update();
     }
 }
+
+Root *Folder::save() {
+    auto* root = new Root(this->folders, this->files);
+    return root;
+}
+
+void Folder::restore(Root *root) {
+    this->folders = root->getFolderState();
+    this->files = root->getFileState();
+}

@@ -10,6 +10,7 @@
 #include <vector>
 #include "NodeIterator.h"
 #include "Observer.h"
+#include "Root.h"
 
 using namespace std;
 class NodeIterator;
@@ -35,4 +36,6 @@ public:
     virtual NodeIterator* createFileIterator() = 0;
     void attach(Observer* o) {observers.push_back(o);}
     virtual void notify() = 0;
+    virtual Root* save() = 0;
+    virtual void restore(Root* root) = 0;
 };

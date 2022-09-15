@@ -6,7 +6,7 @@
 #include "NodeIterator.h"
 #include "File.h"
 #include "FolderObserver.h"
-#include "FileObserver.h"
+#include "AntiVirus.h"
 
 using namespace std;
 
@@ -50,10 +50,10 @@ int main() {
     root->attach(new FolderObserver(documents));
 
     documents->addFile(poem);
-    root->attach(new FileObserver(poem));
+    root->attach(new AntiVirus(poem));
 
     documents->addFile(story);
-    root->attach(new FileObserver(story));
+    root->attach(new AntiVirus(story));
 
     Folder *current = root;
 
